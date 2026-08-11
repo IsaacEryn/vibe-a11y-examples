@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>바이브 코딩, 접근성까지 부탁해 — 실습 데모</title>
+<style>
+  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; color:#1a1a1a; background:#fff;
+         max-width:720px; margin:0 auto; padding:48px 24px; line-height:1.7; }
+  h1 { font-size:1.5rem; } h2 { font-size:1.15rem; margin-top:2.2rem; }
+  a { color:#1d4ed8; }
+  :focus-visible { outline:3px solid #1d4ed8; outline-offset:3px; }
+  .notice { border:2px solid #92400e; background:#fffbeb; color:#78350f; border-radius:10px;
+            padding:14px 18px; margin:24px 0; }
+  ul.demos { padding-left:1.2rem; } ul.demos li { margin-bottom:.7rem; }
+  .tag { font-size:.8rem; border:1px solid #999; border-radius:999px; padding:1px 9px; color:#444;
+         margin-left:6px; white-space:nowrap; }
+  footer { margin-top:56px; font-size:.85rem; color:#555; }
+</style>
+</head>
+<body>
+<header>
+  <nav aria-label="상위 이동"><a href="/">demo.codeslog.com</a></nav>
+  <h1>《바이브 코딩, 접근성까지 부탁해》 실습 데모</h1>
+  <p>책에서 다루는 접근성 문제를 <strong>직접 겪어보는</strong> 페이지들입니다.
+     마우스를 치우고 <kbd>Tab</kbd>·<kbd>Enter</kbd> 키로, 가능하면 스크린리더로도 써보세요.</p>
+</header>
+<main>
+  <div class="notice" role="note">
+    ⚠️ <strong>일러두기</strong> — "나쁜 예" 페이지들은 접근성 문제를 체험하기 위해
+    <strong>의도적으로 잘못 만든 교보재</strong>입니다. 실제 서비스에서 그대로 쓰면 안 됩니다.
+  </div>
+
+  <h2>7장 — 접근성 요구사항을 AI의 기본 규칙으로</h2>
+  <ul class="demos">
+    <li><a href="ch07/cards.html">규칙 파일 유무에 따른 결과 비교</a><span class="tag">비교 데모</span></li>
+    <li><a href="https://github.com/IsaacEryn/vibe-a11y-examples/blob/main/book/vibe-a11y/rules/accessibility-rules.md">복사해서 쓰는 접근성 기본 규칙 세트</a><span class="tag">텍스트</span></li>
+  </ul>
+
+  <h2>8장 — 버튼처럼 생겼는데 버튼이 아니다</h2>
+  <ul class="demos">
+    <li><a href="ch08/bad.html">가짜 버튼 체험하기</a><span class="tag">나쁜 예 ⚠️</span></li>
+    <li><a href="ch08/good.html">진짜 버튼 체험하기</a><span class="tag">좋은 예</span></li>
+    <li><a href="ch08/compare.html">나란히 비교</a><span class="tag">비교 데모</span></li>
+  </ul>
+
+  <h2>프롬프트 모음</h2>
+  <ul class="demos">
+    <li><a href="https://github.com/IsaacEryn/vibe-a11y-examples/blob/main/book/vibe-a11y/prompts/README.md">본문의 "복사해서 쓰는 프롬프트" 모음</a><span class="tag">텍스트</span></li>
+  </ul>
+
+  <p>데모는 책의 집필·출간 진행에 따라 장별로 추가됩니다.</p>
+</main>
+<footer>
+  <p>소스와 이슈 제보: <a href="https://github.com/IsaacEryn/vibe-a11y-examples">GitHub 저장소</a> ·
+     저자 도구: <a href="https://www.a11ychk.com/ko">A11YCHK</a> · 블로그: <a href="https://www.codeslog.com">codeslog</a></p>
+</footer>
+</body>
+</html>

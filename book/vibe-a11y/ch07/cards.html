@@ -1,49 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>그림 7-2 데모 — 규칙 파일 유무에 따른 결과 비교</title>
-<style>
-  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#fff; color:#111;
-         display:flex; gap:56px; justify-content:center; align-items:flex-start; padding:48px 24px; }
-  .col { width:300px; }
-  .col > h2 { font-size:16px; text-align:center; margin:0 0 16px; }
-  .card { border:1px solid #d5d5d5; border-radius:14px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
-  .thumb { display:block; width:100%; height:170px; background:linear-gradient(160deg,#a7f3d0,#5eead4);
-           color:#065f46; font-size:15px; display:flex; align-items:center; justify-content:center; }
-  .body { padding:16px 18px 20px; position:relative; }
-  .card-title { font-size:17px; font-weight:700; margin:0 0 8px; }
-  .price { font-size:15px; color:#374151; margin:0; }
-  .card-link { color:inherit; text-decoration:none; }
-  .card-link::after { content:''; position:absolute; inset:0; }
-  .bad-card { cursor:pointer; }
-  :focus-visible { outline:3px solid #1a56db; outline-offset:2px; }
-  .caption { font-size:12.5px; color:#666; margin-top:12px; font-family:ui-monospace,monospace; text-align:center; }
-</style>
+<meta http-equiv="refresh" content="0; url=../ch08/cards.html">
+<title>이동됨 — 8장 데모</title>
 </head>
 <body>
-  <div class="col">
-    <h2>규칙 파일 없음</h2>
-    <div class="card bad-card" onclick="location.href='#detail'">
-      <div class="thumb">[상품 사진]</div>
-      <div class="body">
-        <div class="card-title">스테인리스 텀블러</div>
-        <p class="price">19,000원</p>
-      </div>
-    </div>
-    <p class="caption">div onclick · img alt 없음 · 제목은 div<br>Tab 도달 불가 — 스크린리더에 침묵</p>
-  </div>
-  <div class="col">
-    <h2>규칙 파일 있음</h2>
-    <article class="card">
-      <span class="thumb" role="img" aria-label="스테인리스 텀블러 민트색 제품 사진">[상품 사진]</span>
-      <div class="body">
-        <h3 class="card-title"><a href="#detail" class="card-link">스테인리스 텀블러</a></h3>
-        <p class="price">19,000원</p>
-      </div>
-    </article>
-    <p class="caption">article · alt 제공 · h3 안의 링크<br>클릭 영역은 CSS로 카드 전체 확장</p>
-  </div>
+<p>이 데모는 <a href="../ch08/cards.html">ch08/cards.html</a>로 이동했습니다. (장 번호 개편)</p>
 </body>
 </html>

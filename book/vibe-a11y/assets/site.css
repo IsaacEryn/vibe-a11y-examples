@@ -30,8 +30,10 @@
   --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, 'D2Coding', monospace;
 }
 
+/* 기본은 시스템 설정을 따른다.
+   단, 사용자가 상단에서 '밝게'를 직접 골랐다면(html[data-theme="light"]) 그 선택이 우선한다. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --ink:        #ededf0;  /* #17171a 대비 15.1:1 */
     --ink-soft:   #b0b0b8;  /* #17171a 대비  8.9:1 */
     --line:       #3f3f46;
@@ -49,6 +51,29 @@
     --ok-ink:     #b6e9c6;  /* ok-bg 대비 10.9:1 */
   }
 }
+
+/* 시스템이 라이트여도 사용자가 '어둡게'를 고른 경우. 값은 위 블록과 같다. */
+:root[data-theme="dark"] {
+  --ink:        #ededf0;
+  --ink-soft:   #b0b0b8;
+  --line:       #3f3f46;
+  --line-strong:#8b8b94;
+  --bg:         #17171a;
+  --bg-soft:    #1f1f23;
+  --accent:     #93b4ff;
+  --accent-ink: #17171a;
+
+  --warn-line:  #d9a441;
+  --warn-bg:    #2a2213;
+  --warn-ink:   #f4d9a0;
+  --ok-line:    #4ea96f;
+  --ok-bg:      #14251a;
+  --ok-ink:     #b6e9c6;
+}
+
+/* 스크롤바·기본 폼 위젯 같은 브라우저 UI도 고른 모드를 따라가게 한다. */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }
 
 /* ── 기본 ─────────────────────────────────────────── */
 
@@ -123,10 +148,33 @@ kbd {
 /* ── 상단 ─────────────────────────────────────────── */
 
 .topnav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
   font-size: .9rem;
   margin: 0 0 20px;
 }
 .topnav a { color: var(--ink-soft); }
+
+/* ── 화면 모드 선택 (theme.js가 넣는다) ───────────── */
+
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+.theme-switch label {
+  margin-bottom: 0;
+  color: var(--ink-soft);
+}
+.theme-switch select {
+  font-size: .9rem;
+  padding: 6px 10px;
+  min-height: 44px;  /* 조작 대상 크기 — 버튼과 같은 기준 */
+}
 
 .lede {
   color: var(--ink-soft);

@@ -156,7 +156,9 @@ kbd {
   font-size: .9rem;
   margin: 0 0 20px;
 }
-.topnav a { color: var(--ink-soft); }
+/* 글자를 크게 키우면 demo.codeslog.com 같은 긴 주소가 화면 밖으로 밀려난다.
+   가로 스크롤이 생기지 않도록 주소 중간에서도 줄이 바뀌게 둔다. */
+.topnav a { color: var(--ink-soft); overflow-wrap: anywhere; }
 
 /* ── 화면 모드 선택 (theme.js가 넣는다) ───────────── */
 

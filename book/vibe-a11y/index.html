@@ -3,75 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>바이브 코딩, 접근성까지 부탁해 — 실습 데모</title>
-<style>
-  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; color:#1a1a1a; background:#fff;
-         max-width:720px; margin:0 auto; padding:48px 24px; line-height:1.7; }
-  h1 { font-size:1.5rem; } h2 { font-size:1.15rem; margin-top:2.2rem; }
-  a { color:#1d4ed8; }
-  :focus-visible { outline:3px solid #1d4ed8; outline-offset:3px; }
-  .notice { border:2px solid #92400e; background:#fffbeb; color:#78350f; border-radius:10px;
-            padding:14px 18px; margin:24px 0; }
-  ul.demos { padding-left:1.2rem; } ul.demos li { margin-bottom:.7rem; }
-  .tag { font-size:.8rem; border:1px solid #999; border-radius:999px; padding:1px 9px; color:#444;
-         margin-left:6px; white-space:nowrap; }
-  footer { margin-top:56px; font-size:.85rem; color:#555; }
-</style>
+<title>실습 데모 — 바이브 코딩, 접근성까지 부탁해</title>
+<meta name="description" content="책 《바이브 코딩, 접근성까지 부탁해》의 실습 데모. 접근성 문제가 있는 화면과 고친 화면을 직접 눌러보며 비교합니다.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d4ed8'/%3E%3Ctext x='16' y='23' font-size='19' font-family='sans-serif' font-weight='700' fill='%23fff' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
 <header>
-  <nav aria-label="상위 이동"><a href="/">demo.codeslog.com</a></nav>
+  <p class="topnav"><a href="../../">demo.codeslog.com</a></p>
   <h1>《바이브 코딩, 접근성까지 부탁해》 실습 데모</h1>
-  <p>책에서 다루는 접근성 문제를 <strong>직접 겪어보는</strong> 페이지들입니다.
-     마우스를 치우고 <kbd>Tab</kbd>·<kbd>Enter</kbd> 키로, 가능하면 스크린리더로도 써보세요.</p>
+  <p class="lede">책에서 다루는 접근성 문제를 직접 겪어보는 페이지들입니다.
+     마우스를 치우고 <kbd>Tab</kbd>과 <kbd>Enter</kbd>로, 가능하면 스크린리더로도 사용해보세요.</p>
 </header>
-<main>
-  <div class="notice" role="note">
-    ⚠️ <strong>일러두기</strong> — "나쁜 예" 페이지들은 접근성 문제를 체험하기 위해
-    <strong>의도적으로 잘못 만든 교보재</strong>입니다. 실제 서비스에서 그대로 쓰면 안 됩니다.
+
+<main id="main">
+  <div class="notice">
+    <p><strong>일러두기</strong> — '나쁜 예' 페이지는 접근성 문제를 체험하기 위해
+    의도적으로 잘못 만든 교보재입니다. 실제 서비스에서 그대로 쓰면 안 됩니다.</p>
   </div>
 
-  <h2>8장 — 접근성 요구사항을 AI의 기본 규칙으로</h2>
+  <h2>바로 쓰는 자료</h2>
   <ul class="demos">
-    <li><a href="ch08/cards.html">규칙 파일 유무에 따른 결과 비교</a><span class="tag">비교 데모</span></li>
-    <li><a href="https://github.com/IsaacEryn/vibe-a11y-examples/blob/main/book/vibe-a11y/rules/accessibility-rules.md">복사해서 쓰는 접근성 기본 규칙 세트</a><span class="tag">텍스트</span></li>
+    <li><a href="rules/">접근성 기본 규칙 세트</a>
+      <span class="tag">복사용</span>
+      <span class="lede">AI 규칙 파일에 붙여 넣는 8장의 규칙</span></li>
+    <li><a href="prompts/">복사해서 쓰는 프롬프트 모음</a>
+      <span class="tag">복사용</span>
+      <span class="lede">본문에 등장하는 프롬프트 전문</span></li>
   </ul>
 
-  <h2>9장 — 버튼처럼 생겼는데 버튼이 아니다</h2>
+  <h2>장별 체험 데모</h2>
+  <p class="legend">
+    <span class="tag bad">나쁜 예</span> 문제를 겪어보는 화면
+    <span class="tag good">좋은 예</span> 같은 화면을 고친 것
+    <span class="tag">비교</span> 둘을 나란히 놓은 것
+  </p>
+
+  <h3>8장 — 접근성 요구사항을 AI의 기본 규칙으로</h3>
   <ul class="demos">
-    <li><a href="ch09/bad.html">가짜 버튼 체험하기</a><span class="tag">나쁜 예 ⚠️</span></li>
-    <li><a href="ch09/good.html">진짜 버튼 체험하기</a><span class="tag">좋은 예</span></li>
-    <li><a href="ch09/compare.html">나란히 비교</a><span class="tag">비교 데모</span></li>
+    <li><a href="ch08/cards.html">규칙 파일이 있을 때와 없을 때</a><span class="tag">비교</span></li>
   </ul>
 
-  <h2>12장 — 마우스를 치워보자</h2>
+  <h3>9장 — 버튼처럼 생겼는데 버튼이 아니다</h3>
   <ul class="demos">
-    <li><a href="ch12/no-focus.html">포커스가 보이지 않는 화면</a><span class="tag">나쁜 예 ⚠️</span></li>
-    <li><a href="ch12/ok-focus.html">포커스가 보이는 화면</a><span class="tag">좋은 예</span></li>
+    <li><a href="ch09/bad.html">가짜 버튼 체험하기</a><span class="tag bad">나쁜 예</span></li>
+    <li><a href="ch09/good.html">진짜 버튼 체험하기</a><span class="tag good">좋은 예</span></li>
+    <li><a href="ch09/compare.html">두 버튼 나란히 보기</a><span class="tag">비교</span></li>
   </ul>
 
-  <h2>14장 — 모달을 열었더니 키보드가 사라졌다</h2>
+  <h3>12장 — 마우스를 치워보자</h3>
   <ul class="demos">
-    <li><a href="ch14/broken-modal.html">반쪽짜리 모달</a><span class="tag">나쁜 예 ⚠️</span></li>
-    <li><a href="ch14/ok-modal.html">제대로 만든 모달</a><span class="tag">좋은 예</span></li>
+    <li><a href="ch12/no-focus.html">포커스가 보이지 않는 화면</a><span class="tag bad">나쁜 예</span></li>
+    <li><a href="ch12/ok-focus.html">포커스가 보이는 화면</a><span class="tag good">좋은 예</span></li>
   </ul>
 
-  <h2>15장 — 모바일에서는 또 다르다</h2>
+  <h3>14장 — 모달을 열었더니 키보드가 사라졌다</h3>
   <ul class="demos">
-    <li><a href="ch15/no-zoom.html">확대가 막힌 화면</a><span class="tag">나쁜 예 ⚠️</span></li>
-    <li><a href="ch15/ok-zoom.html">확대가 되는 화면</a><span class="tag">좋은 예</span></li>
+    <li><a href="ch14/broken-modal.html">반쪽짜리 모달</a><span class="tag bad">나쁜 예</span></li>
+    <li><a href="ch14/ok-modal.html">제대로 만든 모달</a><span class="tag good">좋은 예</span></li>
   </ul>
 
-  <h2>프롬프트 모음</h2>
+  <h3>15장 — 모바일에서는 또 다르다</h3>
   <ul class="demos">
-    <li><a href="https://github.com/IsaacEryn/vibe-a11y-examples/blob/main/book/vibe-a11y/prompts/README.md">본문의 "복사해서 쓰는 프롬프트" 모음</a><span class="tag">텍스트</span></li>
+    <li><a href="ch15/no-zoom.html">확대가 막힌 화면</a><span class="tag bad">나쁜 예</span></li>
+    <li><a href="ch15/ok-zoom.html">확대가 되는 화면</a><span class="tag good">좋은 예</span></li>
   </ul>
 
-  <p>데모는 책의 집필·출간 진행에 따라 장별로 추가됩니다.</p>
+  <p class="lede">지금은 다섯 개 장의 데모가 있습니다. 나머지 장은 책의 진행에 맞춰
+     하나씩 추가하고 있습니다. 비어 있는 장 번호는 아직 만들지 않았다는 뜻입니다.</p>
 </main>
+
 <footer>
-  <p>소스와 이슈 제보: <a href="https://github.com/IsaacEryn/vibe-a11y-examples">GitHub 저장소</a> ·
-     저자 도구: <a href="https://www.a11ychk.com/ko">A11YCHK</a> · 블로그: <a href="https://www.codeslog.com">codeslog</a></p>
+  <p>소스와 이슈 제보: <a href="https://github.com/IsaacEryn/vibe-a11y-examples">GitHub 저장소</a></p>
+  <p>저자 도구: <a href="https://www.a11ychk.com/ko">A11YCHK</a> ·
+     블로그: <a href="https://www.codeslog.com">codeslog</a></p>
 </footer>
 </body>
 </html>

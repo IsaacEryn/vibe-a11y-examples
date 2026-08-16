@@ -3,10 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>그림 8-1 데모 — 진짜 버튼 vs 가짜 버튼</title>
+<title>9장 진짜 버튼과 가짜 버튼 비교 — 바이브 코딩, 접근성까지 부탁해</title>
+<meta name="description" content="같은 모양의 버튼 두 개. 하나는 button 요소, 하나는 div입니다. 겉모습이 같아도 동작이 다릅니다.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d4ed8'/%3E%3Ctext x='16' y='23' font-size='19' font-family='sans-serif' font-weight='700' fill='%23fff' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
 <style>
-  body { font-family: 'Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#fff; color:#111;
-         display:flex; gap:64px; justify-content:center; align-items:flex-start; padding:56px 24px; }
+  /* 이 페이지는 책의 그림(진짜 버튼과 가짜 버튼 비교)의 원본입니다.
+     위쪽 비교 영역의 배치와 버튼 모양은 지면 캡처와 맞춰야 하므로 그대로 둡니다.
+     아래 안내 영역만 나중에 덧붙였습니다. */
+  body { font-family: 'Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#fff; color:#111; }
+  /* 지면 캡처 영역(가로 1000px 기준 위쪽)에 아래 안내가 끼어들지 않도록 최소 높이를 둡니다. */
+  .compare-row { display:flex; gap:64px; justify-content:center; align-items:flex-start;
+                 padding:56px 24px; flex-wrap:wrap; min-height:460px; align-content:flex-start; }
   .col { text-align:center; width: 260px; }
   .col h2 { font-size:17px; margin:0 0 6px; }
   .col p  { font-size:13px; color:#555; margin:0 0 20px; font-family: ui-monospace, monospace; }
@@ -17,19 +24,49 @@
     background:linear-gradient(135deg,#4f46e5,#7c3aed);
     color:#fff; font-size:17px; font-weight:700; font-family:inherit;
   }
-  :focus-visible { outline:3px solid #1a56db; outline-offset:3px; }
+  :focus-visible { outline:3px solid #1d4ed8; outline-offset:3px; }
+
+  /* 아래는 비교 영역 밖의 안내입니다. */
+  .below { max-width:660px; margin:0 auto; padding:0 24px 56px; line-height:1.7; }
+  .below .notice { border:1px solid #92400e; border-left-width:5px; background:#fffbeb; color:#78350f;
+                   border-radius:10px; padding:14px 18px; margin:0 0 20px; }
+  .below p { margin:0 0 14px; }
+  .below a { color:#1d4ed8; }
+  .below footer { margin-top:28px; padding-top:16px; border-top:1px solid #d4d4d8;
+                  font-size:.85rem; color:#52525b; }
+  .below footer a { color:#52525b; }
 </style>
 </head>
 <body>
-  <div class="col">
-    <h2>진짜 버튼</h2>
-    <p>&lt;button&gt;</p>
-    <button type="button" class="submit-btn" onclick="alert('제출되었습니다')">제출하기</button>
+  <div class="compare-row">
+    <div class="col">
+      <h2>진짜 버튼</h2>
+      <p>&lt;button&gt;</p>
+      <button type="button" class="submit-btn" onclick="alert('제출되었습니다')">제출하기</button>
+    </div>
+    <div class="col">
+      <h2>가짜 버튼</h2>
+      <p>&lt;div onclick&gt;</p>
+      <div class="submit-btn" onclick="alert('제출되었습니다')">제출하기</div>
+    </div>
   </div>
-  <div class="col">
-    <h2>가짜 버튼</h2>
-    <p>&lt;div onclick&gt;</p>
-    <div class="submit-btn" onclick="alert('제출되었습니다')">제출하기</div>
+
+  <div class="below">
+    <div class="notice">
+      <p><strong>오른쪽은 의도적으로 잘못 만든 교보재입니다.</strong>
+         <code>&lt;div onclick&gt;</code>으로 만들어서 마우스로만 눌립니다.
+         <kbd>Tab</kbd> 키를 눌러보면 왼쪽 버튼에만 포커스가 갑니다.</p>
+    </div>
+    <p>이 페이지는 접근성 검사 도구의 실습 대상이기도 합니다.
+       제목 요소와 랜드마크를 일부러 넣지 않아서, 검사를 돌리면
+       "h1 없음"과 "랜드마크 없음"이 함께 잡힙니다. 책 22장에서 이 검사 결과를 읽습니다.</p>
+    <p><a href="../">실습 데모 목록으로</a> ·
+       <a href="bad.html">가짜 버튼만 따로 보기</a> ·
+       <a href="good.html">진짜 버튼만 따로 보기</a></p>
+    <footer>
+      《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
+      <a href="https://github.com/IsaacEryn/vibe-a11y-examples">소스 보기</a>
+    </footer>
   </div>
 </body>
 </html>

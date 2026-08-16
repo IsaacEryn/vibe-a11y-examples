@@ -3,38 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>9장 — 가짜 버튼 체험 (의도된 나쁜 예)</title>
+<title>9장 가짜 버튼 체험 (나쁜 예) — 바이브 코딩, 접근성까지 부탁해</title>
+<meta name="description" content="div로 만든 가짜 버튼을 직접 눌러보고 키보드로 도달할 수 없다는 것을 확인하는 데모입니다.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d4ed8'/%3E%3Ctext x='16' y='23' font-size='19' font-family='sans-serif' font-weight='700' fill='%23fff' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
 <style>
-  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; color:#1a1a1a; background:#fff;
-         max-width:720px; margin:0 auto; padding:40px 24px; line-height:1.7; }
-  h1 { font-size:1.3rem; }
-  a { color:#1d4ed8; }
-  :focus-visible { outline:3px solid #1d4ed8; outline-offset:3px; }
-  .notice { border:2px solid #92400e; background:#fffbeb; color:#78350f; border-radius:10px;
-            padding:12px 16px; margin:20px 0; }
-  .try { border:2px solid #1d4ed8; background:#eff6ff; border-radius:10px; padding:14px 18px; margin:24px 0; }
-  .try h2 { font-size:1rem; margin:0 0 8px; }
-  .stage { border:1px dashed #999; border-radius:12px; padding:40px 20px; text-align:center; margin:28px 0; }
-  /* 아래 버튼이 이 페이지의 '의도된 문제'입니다 */
-  .submit-btn { display:inline-block; cursor:pointer; padding:14px 44px; border-radius:12px;
-                background:linear-gradient(135deg,#4f46e5,#7c3aed); color:#fff; font-size:17px; font-weight:700; }
-  footer { margin-top:48px; font-size:.85rem; color:#555; }
+  /* 이 페이지의 '의도된 문제'입니다.
+     버튼처럼 보이지만 button 요소가 아니라 div입니다. */
+  .submit-btn {
+    display: inline-block;
+    cursor: pointer;
+    padding: 14px 44px;
+    border-radius: 10px;
+    background: #4f46e5;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+  }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
 <header>
-  <nav aria-label="상위 이동"><a href="../">데모 목록으로</a></nav>
+  <p class="topnav"><a href="../">실습 데모 목록</a></p>
   <h1>9장 — 가짜 버튼 체험</h1>
-  <div class="notice" role="note">⚠️ 아래 점선 안의 버튼은 <strong>의도적으로 잘못 만든 교보재</strong>입니다
-    (<code>&lt;div onclick&gt;</code>). 실제 서비스에서 이렇게 만들면 안 됩니다.</div>
+  <div class="notice">
+    <p><strong>의도적으로 잘못 만든 교보재입니다.</strong>
+       아래 점선 안의 버튼은 <code>&lt;div onclick&gt;</code>으로 만들었습니다.
+       실제 서비스에서 이렇게 만들면 안 됩니다.</p>
+  </div>
 </header>
-<main>
+
+<main id="main">
   <div class="try">
     <h2>이렇게 해보세요</h2>
-    <ol style="margin:0 0 0 1.1rem; padding:0;">
-      <li>마우스로 버튼을 눌러보세요 — 잘 눌립니다.</li>
-      <li>이제 마우스를 치우고 <kbd>Tab</kbd> 키를 눌러보세요 — 버튼에 <strong>도착할 수 없습니다</strong>.</li>
-      <li>스크린리더가 있다면 켜보세요 — 이것이 눌리는 것이라는 안내가 없습니다.</li>
+    <ol>
+      <li>마우스로 버튼을 눌러보세요. 잘 눌립니다.</li>
+      <li>이제 마우스를 치우고 <kbd>Tab</kbd> 키를 눌러보세요.
+          버튼에 <strong>도착할 수 없습니다</strong>.</li>
+      <li>스크린리더가 있다면 켜보세요. 이것이 눌리는 것이라는 안내가 없습니다.</li>
     </ol>
   </div>
 
@@ -43,9 +51,17 @@
     <div class="submit-btn" onclick="alert('제출되었습니다 — 마우스로는요.')">제출하기</div>
   </div>
 
-  <p>겪어보셨나요? 이제 <a href="good.html">진짜 버튼</a>과 비교해보세요.
-     무엇이 왜 다른지는 책의 9장에서 다룹니다.</p>
+  <p>겪어보셨나요? 무엇이 왜 다른지는 책 9장에서 다룹니다.</p>
+
+  <nav class="pager" aria-label="관련 데모">
+    <a href="good.html">진짜 버튼 체험하기</a>
+    <a href="compare.html">두 버튼 나란히 보기</a>
+  </nav>
 </main>
-<footer><p><a href="https://github.com/IsaacEryn/vibe-a11y-examples">소스 보기</a></p></footer>
+
+<footer>
+  <p>《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
+     <a href="https://github.com/IsaacEryn/vibe-a11y-examples">소스 보기</a></p>
+</footer>
 </body>
 </html>

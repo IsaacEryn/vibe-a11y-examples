@@ -3,79 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>14장 — 반쪽짜리 모달 (의도된 나쁜 예)</title>
+<title>14장 반쪽짜리 모달 (나쁜 예) — 바이브 코딩, 접근성까지 부탁해</title>
+<meta name="description" content="열려도 포커스가 들어가지 않고 ESC로 닫히지 않는 모달입니다. 키보드로 직접 겪어보세요.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d4ed8'/%3E%3Ctext x='16' y='23' font-size='19' font-family='sans-serif' font-weight='700' fill='%23fff' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
 <style>
-  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; color:#1a1a1a; background:#fff;
-         max-width:720px; margin:0 auto; padding:40px 24px; line-height:1.7; }
-  h1 { font-size:1.3rem; }
-  a { color:#1d4ed8; }
-  :focus-visible { outline:3px solid #1d4ed8; outline-offset:3px; }
-  .notice { border:2px solid #92400e; background:#fffbeb; color:#78350f; border-radius:10px;
-            padding:12px 16px; margin:20px 0; }
-  .try { border:2px solid #1d4ed8; background:#eff6ff; border-radius:10px; padding:14px 18px; margin:24px 0; }
-  .try h2 { font-size:1rem; margin:0 0 8px; }
-  .stage { border:1px dashed #999; border-radius:12px; padding:28px 24px; margin:28px 0; text-align:center; }
-  button { font-size:16px; font-family:inherit; padding:12px 24px; border:0; border-radius:8px;
-           background:#4f46e5; color:#fff; cursor:pointer; }
-
-  /* ▼▼ 이 페이지의 '의도된 문제': div로 만든 모달 ▼▼
+  /* 이 페이지의 '의도된 문제': div로 만든 모달입니다.
      포커스가 들어가지 않고, ESC로 닫히지 않고, 닫아도 포커스가 돌아오지 않습니다. */
-  .overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.5); }
-  .overlay.open { display:flex; align-items:center; justify-content:center; }
-  .box { background:#fff; border-radius:12px; padding:28px; max-width:400px; text-align:left; }
+  .overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); }
+  .overlay.open { display:flex; align-items:center; justify-content:center; padding:20px; }
+  .box { background:var(--bg); color:var(--ink); border-radius:12px; padding:28px; max-width:400px; }
   .box h2 { margin-top:0; font-size:1.1rem; }
-  .box .close { background:#e5e7eb; color:#111; margin-top:16px; }
-  /* ▲▲ 여기까지가 교보재입니다 ▲▲ */
-
-  footer { margin-top:48px; font-size:.85rem; color:#555; }
-  code { background:#f3f4f6; padding:2px 5px; border-radius:4px; }
+  .box p:last-of-type { margin-bottom:0; }
 </style>
 </head>
 <body>
+
+<!-- 의도된 문제: 모달을 DOM 앞쪽에 두었습니다.
+     열어도 포커스가 따라 들어가지 않기 때문에, Tab을 누르면 포커스는
+     뒤쪽(모달 밖)으로 갑니다. 화면에는 모달만 보이는데 말이죠. -->
+<div class="overlay" id="overlay">
+  <div class="box">
+    <h2>정말 취소하시겠어요?</h2>
+    <p>취소하면 예약이 사라집니다.</p>
+    <p><button type="button" class="subtle" id="closeBtn">닫기</button></p>
+  </div>
+</div>
+
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
 <header>
-  <nav aria-label="상위 이동"><a href="../">데모 목록으로</a></nav>
+  <p class="topnav"><a href="../">실습 데모 목록</a></p>
   <h1>14장 — 반쪽짜리 모달</h1>
-  <div class="notice" role="note">⚠️ 아래 모달은 <strong>의도적으로 잘못 만든 교보재</strong>입니다.
-    보기에는 멀쩡하지만 키보드로는 다룰 수 없습니다.</div>
+  <div class="notice">
+    <p><strong>의도적으로 잘못 만든 교보재입니다.</strong>
+       보기에는 멀쩡하지만 키보드로는 다룰 수 없습니다.
+       실제 서비스에서 이렇게 만들면 안 됩니다.</p>
+  </div>
 </header>
 
-<main>
+<main id="main">
   <div class="try">
     <h2>이렇게 해보세요</h2>
     <ol>
-      <li>Tab으로 <strong>신청 취소</strong> 버튼까지 간 다음 Enter로 모달을 여세요.</li>
-      <li>모달이 열린 상태에서 Tab을 눌러보세요. 포커스가 <strong>모달 안으로 들어가나요?</strong></li>
-      <li><strong>ESC</strong>를 눌러보세요. 닫히나요?</li>
-      <li>마우스로 닫은 뒤 Tab을 눌러보세요. 포커스가 <strong>어디에서</strong> 다시 시작하나요?</li>
+      <li><kbd>Tab</kbd>으로 <strong>신청 취소</strong> 버튼까지 간 다음
+          <kbd>Enter</kbd>로 모달을 여세요.</li>
+      <li>모달이 열린 상태에서 <kbd>Tab</kbd>을 눌러보세요.
+          포커스가 모달 안으로 <strong>들어가지 않습니다</strong>.
+          보이지 않는 뒤쪽 페이지를 돌아다닙니다.</li>
+      <li><kbd>Esc</kbd>를 눌러보세요. 닫히지 않습니다.</li>
+      <li>마우스로 닫은 뒤 <kbd>Tab</kbd>을 눌러보세요.
+          포커스가 열었던 버튼이 아니라 페이지 처음에서 다시 시작합니다.</li>
     </ol>
   </div>
 
-  <div class="stage">
+  <div class="stage" style="text-align:center">
     <button type="button" id="openBtn">신청 취소</button>
   </div>
 
-  <div class="overlay" id="overlay">
-    <div class="box">
-      <h2>정말 취소하시겠어요?</h2>
-      <p>취소하면 예약이 사라집니다.</p>
-      <button type="button" class="close" id="closeBtn">닫기</button>
-    </div>
-  </div>
+  <p>화면에는 모달이 떠 있지만 포커스는 여전히 뒤쪽 페이지에 있습니다.
+     키보드 사용자는 보이지 않는 곳을 더듬게 되고, <kbd>Esc</kbd>도 통하지 않습니다.
+     무엇이 빠졌는지는 책 14장에서 다룹니다.</p>
 
-  <p>화면에는 모달이 떠 있지만 포커스는 여전히 뒤쪽 페이지에 남아 있습니다.
-     키보드 사용자는 보이지 않는 곳을 더듬게 되고, ESC도 통하지 않습니다.
-     무엇이 빠졌는지는 책의 14장에서 다룹니다.</p>
-
-  <p><a href="ok-modal.html">고친 모달과 비교하기</a></p>
+  <nav class="pager" aria-label="관련 데모">
+    <a href="ok-modal.html">고친 모달과 비교하기</a>
+  </nav>
 </main>
 
 <footer>
-  《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
-  <a href="https://github.com/IsaacEryn/vibe-a11y-examples">예제 저장소</a>
+  <p>《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
+     <a href="https://github.com/IsaacEryn/vibe-a11y-examples">소스 보기</a></p>
 </footer>
 
 <script>
-  // 의도적으로 부족하게 만든 코드입니다. 포커스 이동도, ESC 처리도, 복귀도 없습니다.
+  // 의도적으로 부족하게 만든 코드입니다.
+  // 포커스 이동도, ESC 처리도, 닫은 뒤 포커스 복귀도 없습니다.
   document.getElementById('openBtn').addEventListener('click', function () {
     document.getElementById('overlay').classList.add('open');
   });

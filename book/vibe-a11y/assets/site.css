@@ -1,0 +1,334 @@
+/* 《바이브 코딩, 접근성까지 부탁해》 실습 데모 — 공용 스타일
+ *
+ * 원칙
+ * - 색은 정보를 전달하는 곳에만. 배경은 흰색과 아주 옅은 회색까지.
+ * - 그라데이션은 쓰지 않는다. 단, 9장 교보재 버튼은 예외(책 도판).
+ * - 라이트와 다크 두 모드 모두 대비를 실측해 AA를 넘긴다.
+ * - 포커스 표시는 어떤 경우에도 지우지 않는다.
+ */
+
+:root {
+  color-scheme: light dark;
+
+  --ink:        #1a1a1a;  /* 본문        흰 배경 대비 17.4:1 */
+  --ink-soft:   #52525b;  /* 보조 텍스트 흰 배경 대비  7.6:1 */
+  --line:       #d4d4d8;  /* 옅은 구분선 (장식) */
+  --line-strong:#71717a;  /* 의미 있는 경계 흰 배경 대비 4.8:1 */
+  --bg:         #ffffff;
+  --bg-soft:    #fafafa;
+  --accent:     #1d4ed8;  /* 링크·포커스 흰 배경 대비 6.7:1 */
+  --accent-ink: #ffffff;
+
+  --warn-line:  #92400e;
+  --warn-bg:    #fffbeb;
+  --warn-ink:   #78350f;  /* warn-bg 대비 8.8:1 */
+  --ok-line:    #166534;
+  --ok-bg:      #f0fdf4;
+  --ok-ink:     #14532d;  /* ok-bg 대비 8.7:1 */
+
+  --radius: 10px;
+  --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, 'D2Coding', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink:        #ededf0;  /* #17171a 대비 15.1:1 */
+    --ink-soft:   #b0b0b8;  /* #17171a 대비  8.9:1 */
+    --line:       #3f3f46;
+    --line-strong:#8b8b94;  /* #17171a 대비  6.0:1 */
+    --bg:         #17171a;
+    --bg-soft:    #1f1f23;
+    --accent:     #93b4ff;  /* #17171a 대비  8.5:1 */
+    --accent-ink: #17171a;
+
+    --warn-line:  #d9a441;
+    --warn-bg:    #2a2213;
+    --warn-ink:   #f4d9a0;  /* warn-bg 대비 10.7:1 */
+    --ok-line:    #4ea96f;
+    --ok-bg:      #14251a;
+    --ok-ink:     #b6e9c6;  /* ok-bg 대비 10.9:1 */
+  }
+}
+
+/* ── 기본 ─────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
+               'Pretendard', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+  line-height: 1.7;
+  font-size: 1rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1 { font-size: 1.45rem; line-height: 1.4; margin: 0 0 8px; letter-spacing: -0.01em; }
+h2 { font-size: 1.1rem;  line-height: 1.5; margin: 40px 0 12px; letter-spacing: -0.01em; }
+h3 { font-size: 1rem;    margin: 28px 0 8px; }
+p  { margin: 0 0 16px; }
+
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: .92em;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+kbd {
+  font-family: var(--mono);
+  font-size: .85em;
+  background: var(--bg-soft);
+  border: 1px solid var(--line-strong);
+  border-bottom-width: 2px;
+  padding: 2px 6px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+/* ── 건너뛰기 링크 ─────────────────────────────────── */
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+.skip:focus {
+  left: 8px;
+  top: 8px;
+  z-index: 100;
+  background: var(--bg);
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  padding: 10px 16px;
+  text-decoration: none;
+}
+
+/* ── 상단 ─────────────────────────────────────────── */
+
+.topnav {
+  font-size: .9rem;
+  margin: 0 0 20px;
+}
+.topnav a { color: var(--ink-soft); }
+
+.lede {
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+}
+
+/* ── 알림 상자 ────────────────────────────────────── */
+
+.notice {
+  border: 1px solid var(--warn-line);
+  border-left-width: 5px;
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin: 20px 0;
+}
+.notice.ok {
+  border-color: var(--ok-line);
+  background: var(--ok-bg);
+  color: var(--ok-ink);
+}
+.notice p:last-child { margin-bottom: 0; }
+.notice strong { font-weight: 700; }
+
+/* ── 체험 안내 ────────────────────────────────────── */
+
+.try {
+  border: 1px solid var(--line-strong);
+  background: var(--bg-soft);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 24px 0;
+}
+.try h2 { font-size: .95rem; margin: 0 0 10px; }
+.try ol, .try ul { margin: 0; padding-left: 1.2rem; }
+.try li { margin-bottom: 4px; }
+.try li:last-child { margin-bottom: 0; }
+
+/* ── 실습 무대 ────────────────────────────────────── */
+
+.stage {
+  border: 1px dashed var(--line-strong);
+  border-radius: 12px;
+  padding: 28px 24px;
+  margin: 28px 0;
+}
+.stage h2 { margin-top: 0; }
+
+/* ── 폼 컨트롤 ────────────────────────────────────── */
+
+input, select, textarea, button {
+  font-family: inherit;
+  font-size: 1rem;
+}
+input, select, textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  max-width: 100%;
+}
+label { display: inline-block; margin-bottom: 4px; }
+
+button {
+  padding: 11px 22px;
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  cursor: pointer;
+  font-weight: 600;
+}
+button:hover { filter: brightness(1.08); }
+button.subtle {
+  background: var(--bg);
+  color: var(--ink);
+  border-color: var(--line-strong);
+  font-weight: 500;
+}
+
+.fields { display: flex; flex-direction: column; gap: 14px; }
+
+/* ── 목록·태그 ────────────────────────────────────── */
+
+.demos { list-style: none; padding: 0; margin: 0; }
+.demos li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.demos li:first-child { border-top: 1px solid var(--line); }
+
+.tag {
+  font-size: .78rem;
+  padding: 2px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.tag.bad { border-color: var(--warn-line); color: var(--warn-ink); background: var(--warn-bg); }
+.tag.good { border-color: var(--ok-line); color: var(--ok-ink); background: var(--ok-bg); }
+
+.legend {
+  font-size: .85rem;
+  color: var(--ink-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+  margin: 0 0 24px;
+}
+
+/* ── 페이지 이동 ──────────────────────────────────── */
+
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 32px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.pager a {
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  padding: 9px 16px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.pager a:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── 복사 블록 ────────────────────────────────────── */
+
+.snippet { margin: 0 0 32px; }
+.snippet-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.snippet-head h3 { margin: 0; }
+.snippet pre {
+  margin: 0;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: .88rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--ink);
+}
+.copy-status {
+  font-size: .85rem;
+  color: var(--ok-ink);
+  background: var(--ok-bg);
+  border: 1px solid var(--ok-line);
+  border-radius: 6px;
+  padding: 2px 10px;
+  min-height: 1.6em;
+}
+.copy-status:empty {
+  background: transparent;
+  border-color: transparent;
+  padding: 0;
+}
+
+/* ── 페이지 내 목차 ───────────────────────────────── */
+
+.toc { border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 20px; background: var(--bg-soft); }
+.toc h2 { margin: 0 0 10px; font-size: .95rem; }
+.toc ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.toc a { font-size: .9rem; }
+
+/* ── 바닥글 ───────────────────────────────────────── */
+
+footer {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: .85rem;
+  color: var(--ink-soft);
+}
+footer a { color: var(--ink-soft); }
+footer p { margin: 0 0 6px; }
+
+/* ── 좁은 화면 ────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  body { padding: 28px 18px 48px; }
+  h1 { font-size: 1.3rem; }
+  .snippet pre { font-size: .84rem; padding: 14px; }
+}

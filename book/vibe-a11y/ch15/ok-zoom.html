@@ -4,40 +4,34 @@
 <meta charset="UTF-8">
 <!-- 확대 제한을 걷어냈습니다. 이 한 줄이 정답입니다. -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>15장 — 확대가 되는 화면 (좋은 예)</title>
+<title>15장 확대가 되는 화면 (좋은 예) — 바이브 코딩, 접근성까지 부탁해</title>
+<meta name="description" content="확대 제한을 걷어내고 글자와 터치 대상을 키운 모바일 화면입니다.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d4ed8'/%3E%3Ctext x='16' y='23' font-size='19' font-family='sans-serif' font-weight='700' fill='%23fff' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
 <style>
-  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; color:#1a1a1a; background:#fff;
-         max-width:720px; margin:0 auto; padding:40px 24px; line-height:1.7; }
-  h1 { font-size:1.3rem; }
-  a { color:#1d4ed8; }
-  :focus-visible { outline:3px solid #1d4ed8; outline-offset:3px; }
-  .notice { border:2px solid #166534; background:#f0fdf4; color:#14532d; border-radius:10px;
-            padding:12px 16px; margin:20px 0; }
-  .try { border:2px solid #1d4ed8; background:#eff6ff; border-radius:10px; padding:14px 18px; margin:24px 0; }
-  .try h2 { font-size:1rem; margin:0 0 8px; }
-  .stage { border:1px dashed #999; border-radius:12px; padding:24px; margin:28px 0; }
-  /* 글자 크기도 함께 올렸습니다. 본문 1rem 이상, 보조 정보도 14px 아래로 내리지 않습니다. */
-  .fine { font-size:.9rem; color:#555; }
-  .ok-btn { display:inline-block; padding:12px 20px; min-height:44px; box-sizing:border-box;
-            font-size:1rem; border:1px solid #767676; border-radius:8px; background:#fff; cursor:pointer; }
-  footer { margin-top:48px; font-size:.85rem; color:#555; }
-  code { background:#f3f4f6; padding:2px 5px; border-radius:4px; }
+  /* 보조 정보도 rem 단위로 두어 사용자의 글자 크기 설정을 따르게 했습니다. */
+  .fine { font-size: .9rem; color: var(--ink-soft); }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
 <header>
-  <nav aria-label="상위 이동"><a href="../">데모 목록으로</a></nav>
+  <p class="topnav"><a href="../">실습 데모 목록</a></p>
   <h1>15장 — 확대가 되는 화면</h1>
-  <div class="notice" role="note">✅ 같은 화면에서 확대 제한을 걷어내고 글자와 터치 대상을 키운 예입니다.</div>
+  <div class="notice ok">
+    <p><strong>올바르게 고친 예입니다.</strong>
+       확대 제한을 걷어내고, 글자와 터치 대상을 키웠으며, 가짜 버튼을 진짜 버튼으로 바꿨습니다.</p>
+  </div>
 </header>
 
-<main>
+<main id="main">
   <div class="try">
     <h2>이렇게 해보세요</h2>
     <ol>
       <li>휴대폰으로 열고 두 손가락으로 벌려보세요. 어느 기기에서든 확대됩니다.</li>
       <li>확대한 상태에서 읽어보세요. 가로 스크롤 없이 읽힙니다.</li>
-      <li>'약관 전문 보기'를 눌러보세요. 손가락으로 누르기 편한 크기입니다.</li>
+      <li><kbd>Tab</kbd> 키로 '약관 전문 보기'에 도달할 수 있고, 손가락으로 누르기도 편합니다.</li>
     </ol>
   </div>
 
@@ -46,19 +40,21 @@
     <p class="fine">예약 변경은 방문 24시간 전까지 가능하며, 이후에는 위약금이 발생할 수 있습니다.
        주차는 건물 지하 2층을 이용해 주시고, 주차권은 카운터에서 받으실 수 있습니다.
        반려동물 동반은 테라스석에 한해 가능합니다.</p>
-    <p><button type="button" class="ok-btn">약관 전문 보기</button></p>
+    <p><button type="button" class="subtle">약관 전문 보기</button></p>
   </div>
 
-  <p>고친 것은 뷰포트에서 <code>maximum-scale</code>과 <code>user-scalable=no</code>를 지운 것,
-     보조 정보 글자를 rem 단위로 올린 것, 그리고 작은 span 버튼을 진짜 button으로 바꾸면서
-     터치 영역을 44px 이상으로 확보한 것입니다.</p>
+  <p>고친 것은 세 가지입니다. 뷰포트에서 <code>maximum-scale</code>과
+     <code>user-scalable=no</code>를 지운 것, 보조 정보 글자를 rem 단위로 올린 것,
+     그리고 작은 span 버튼을 진짜 button으로 바꾸면서 터치 영역을 44px 이상으로 확보한 것.</p>
 
-  <p><a href="no-zoom.html">확대가 막힌 화면과 비교하기</a></p>
+  <nav class="pager" aria-label="관련 데모">
+    <a href="no-zoom.html">확대가 막힌 화면과 비교하기</a>
+  </nav>
 </main>
 
 <footer>
-  《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
-  <a href="https://github.com/IsaacEryn/vibe-a11y-examples">예제 저장소</a>
+  <p>《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
+     <a href="https://github.com/IsaacEryn/vibe-a11y-examples">소스 보기</a></p>
 </footer>
 </body>
 </html>

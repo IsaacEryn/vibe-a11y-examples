@@ -2,46 +2,54 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<!-- ▼▼ 이 페이지의 '의도된 문제': 확대를 막는 뷰포트 설정 ▼▼
+<!-- 이 페이지의 '의도된 문제': 확대를 막는 뷰포트 설정입니다.
      안드로이드 크롬 등 다수 환경에서 핀치 줌이 차단됩니다.
      iOS 사파리는 접근성을 이유로 이 설정을 무시하지만, 그래도 써서는 안 되는 코드입니다. -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>15장 — 확대가 막힌 화면 (의도된 나쁜 예)</title>
+<title>15장 확대가 막힌 화면 (나쁜 예) — 바이브 코딩, 접근성까지 부탁해</title>
+<meta name="description" content="확대를 막아둔 모바일 화면입니다. 휴대폰으로 열어 두 손가락으로 벌려보세요.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d4ed8'/%3E%3Ctext x='16' y='23' font-size='19' font-family='sans-serif' font-weight='700' fill='%23fff' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
 <style>
-  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; color:#1a1a1a; background:#fff;
-         max-width:720px; margin:0 auto; padding:40px 24px; line-height:1.7; }
-  h1 { font-size:1.3rem; }
-  a { color:#1d4ed8; }
-  :focus-visible { outline:3px solid #1d4ed8; outline-offset:3px; }
-  .notice { border:2px solid #92400e; background:#fffbeb; color:#78350f; border-radius:10px;
-            padding:12px 16px; margin:20px 0; }
-  .try { border:2px solid #1d4ed8; background:#eff6ff; border-radius:10px; padding:14px 18px; margin:24px 0; }
-  .try h2 { font-size:1rem; margin:0 0 8px; }
-  .stage { border:1px dashed #999; border-radius:12px; padding:24px; margin:28px 0; }
-  /* 작은 글자까지 겹쳐서, 확대가 막혔을 때의 불편을 체감하게 합니다 */
-  .fine { font-size:12px; color:#666; }
-  .tiny-btn { display:inline-block; padding:2px 6px; font-size:12px; border:1px solid #767676;
-              border-radius:4px; background:#fff; cursor:pointer; }
-  footer { margin-top:48px; font-size:.85rem; color:#555; }
-  code { background:#f3f4f6; padding:2px 5px; border-radius:4px; }
+  /* 확대가 막힌 상태의 불편을 체감하도록 작은 글자와 작은 조작 대상을 함께 두었습니다.
+     이 둘도 의도된 문제입니다. */
+  .fine { font-size: 12px; color: var(--ink-soft); }
+  .tiny-btn {
+    display: inline-block;
+    padding: 2px 6px;
+    font-size: 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    background: var(--bg);
+    cursor: pointer;
+  }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
 <header>
-  <nav aria-label="상위 이동"><a href="../">데모 목록으로</a></nav>
+  <p class="topnav"><a href="../">실습 데모 목록</a></p>
   <h1>15장 — 확대가 막힌 화면</h1>
-  <div class="notice" role="note">⚠️ 이 페이지는 <strong>의도적으로 확대를 막아둔 교보재</strong>입니다
-    (<code>user-scalable=no</code>). 실제 서비스에서 이렇게 만들면 안 됩니다.</div>
+  <div class="notice">
+    <p><strong>의도적으로 잘못 만든 교보재입니다.</strong> 이 페이지에는 문제가 셋 있습니다.</p>
+    <p>뷰포트에서 확대를 막았고(<code>user-scalable=no</code>),
+       아래 '약관 전문 보기'는 버튼처럼 보이지만 <code>&lt;span&gt;</code>이라 키보드로 누를 수 없으며,
+       그 조작 대상의 크기가 최소 기준(24×24px)에 못 미칩니다.</p>
+  </div>
 </header>
 
-<main>
+<main id="main">
   <div class="try">
     <h2>이렇게 해보세요</h2>
     <ol>
-      <li><strong>휴대폰으로</strong> 이 페이지를 여세요. 데스크톱에서는 차이가 드러나지 않습니다.</li>
-      <li>아래 작은 글씨를 <strong>두 손가락으로 벌려</strong> 확대해보세요.</li>
-      <li>안드로이드 크롬이라면 확대되지 않습니다. 아이폰이라면 확대가 됩니다.
+      <li><strong>휴대폰으로</strong> 이 페이지를 여세요.</li>
+      <li>아래 작은 글씨를 <strong>두 손가락으로 벌려</strong> 확대해보세요.
+          안드로이드 크롬이라면 확대되지 않습니다. 아이폰이라면 확대가 됩니다.
           같은 코드인데 결과가 다른 이유는 책에서 설명합니다.</li>
+      <li>폰이 없다면 데스크톱 브라우저의 개발자도구에서 기기 모드(모바일 화면 흉내)를 켜고
+          뷰포트 설정이 어떻게 적용되는지 확인해보세요.</li>
+      <li><kbd>Tab</kbd> 키로 '약관 전문 보기'에 도달해보세요. 도달할 수 없습니다.</li>
     </ol>
   </div>
 
@@ -55,14 +63,16 @@
 
   <p>저시력 사용자에게 확대는 취향이 아니라 유일한 독해 수단입니다.
      고령 사용자도 마찬가지입니다. 뷰포트 한 줄이 그 수단을 빼앗습니다.
-     무엇을 어떻게 고치는지는 책의 15장에서 다룹니다.</p>
+     무엇을 어떻게 고치는지는 책 15장에서 다룹니다.</p>
 
-  <p><a href="ok-zoom.html">확대가 되는 화면과 비교하기</a></p>
+  <nav class="pager" aria-label="관련 데모">
+    <a href="ok-zoom.html">확대가 되는 화면과 비교하기</a>
+  </nav>
 </main>
 
 <footer>
-  《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
-  <a href="https://github.com/IsaacEryn/vibe-a11y-examples">예제 저장소</a>
+  <p>《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
+     <a href="https://github.com/IsaacEryn/vibe-a11y-examples">소스 보기</a></p>
 </footer>
 </body>
 </html>

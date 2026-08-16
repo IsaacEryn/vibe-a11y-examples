@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>접근성 기본 규칙 세트 — 바이브 코딩, 접근성까지 부탁해</title>
+<meta name="description" content="AI 규칙 파일에 붙여 넣는 웹 접근성 규칙 세트. 책 8장의 규칙 전문.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d4ed8'/%3E%3Ctext x='16' y='23' font-size='19' font-family='sans-serif' font-weight='700' fill='%23fff' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header>
+  <p class="topnav"><a href="../">실습 데모 목록</a></p>
+  <h1>접근성 기본 규칙 세트</h1>
+  <p class="lede">책 8장에서 만드는 규칙입니다. 프로젝트의 AI 규칙 파일에 통째로 붙여 넣으면 됩니다.</p>
+</header>
+
+<main id="main">
+  <p>AI 코딩 도구가 매번 읽는 규칙 파일(CLAUDE.md, AGENTS.md, Cursor Rules 등)에
+     그대로 붙여 넣으세요. 한 번 넣어두면 앞으로 만드는 모든 화면에 적용됩니다.
+     각 규칙을 왜 그렇게 정했는지는 책 8장에서 다룹니다.</p>
+
+  <p class="copy-status" role="status" aria-live="polite" id="copy-status"></p>
+
+<section class="snippet" id="rules">
+  <div class="snippet-head">
+    <h2>규칙 전문</h2>
+    <button type="button" class="subtle" data-copy="rules-text">전체 복사</button>
+  </div>
+  <pre id="rules-text">## 접근성 규칙 (모든 UI 작업에 적용)
+
+이 프로젝트의 화면은 키보드만 사용하는 사용자와 스크린리더 사용자가
+모든 기능을 사용할 수 있어야 한다. 아래 규칙은 예외 없이 적용한다.
+
+### 구조
+- 클릭 요소: 동작 실행은 &lt;button&gt;, 페이지 이동은 &lt;a href&gt;.
+  div/span + onclick 금지. role과 tabindex로 흉내 내지 않는다.
+- 제목은 &lt;h1&gt;~&lt;h6&gt;를 순서대로. 스타일 때문에 제목 레벨을 건너뛰지 않는다.
+- 페이지 구조는 &lt;header&gt; &lt;nav&gt; &lt;main&gt; &lt;footer&gt; 랜드마크를 사용한다.
+
+### 이미지·색
+- 모든 &lt;img&gt;에 alt 작성. 정보가 있으면 내용을 설명하고,
+  장식이면 alt=&quot;&quot;(빈 값)로 둔다. 파일명을 alt에 넣지 않는다.
+- 텍스트와 배경의 명도 대비는 4.5:1 이상(큰 텍스트 3:1).
+- 색만으로 상태를 구분하지 않는다. 아이콘·텍스트를 병행한다.
+
+### 폼·상호작용
+- 모든 입력 필드에 &lt;label&gt;을 연결한다. placeholder로 label을 대신하지 않는다.
+- 오류 메시지는 텍스트로 표시하고 해당 필드와 연결한다.
+- 모달을 열면 포커스를 모달 안으로 옮기고, 닫으면 원래 위치로 되돌린다.
+  ESC로 닫을 수 있게 한다.
+- 포커스 표시(outline)를 제거하지 않는다. 디자인 변경은 허용, 삭제는 금지.
+
+### 모바일·모션·문서
+- 뷰포트에서 확대를 막지 않는다 (user-scalable=no, maximum-scale 금지).
+- 양수 tabindex 금지. 글자 크기는 rem 단위, 본문 1rem(16px) 이상.
+- 애니메이션에는 prefers-reduced-motion 대응을 포함한다.
+- 문서에 lang=&quot;ko&quot;와 페이지를 설명하는 &lt;title&gt;을 지정한다.
+- 화면 갱신을 시각으로만 알리지 않는다. 상태 메시지는 role=&quot;status&quot;로 함께 알린다.
+
+### 작업 방식
+- UI 코드를 생성·수정한 뒤에는 위 규칙 위반 여부를 스스로 점검하고,
+  위반이 있으면 수정한 뒤 결과에 점검 내역을 표시한다.</pre>
+</section>
+</main>
+
+<footer>
+  <p>이 페이지는 <a href="https://github.com/IsaacEryn/vibe-a11y-examples/blob/main/book/vibe-a11y/rules/accessibility-rules.md">rules/accessibility-rules.md</a>에서 생성됩니다. 내용 수정은 원본 파일에서 합니다.</p>
+  <p>《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
+     <a href="https://github.com/IsaacEryn/vibe-a11y-examples">GitHub 저장소</a></p>
+</footer>
+
+<script src="../assets/copy.js" defer></script>
+</body>
+</html>

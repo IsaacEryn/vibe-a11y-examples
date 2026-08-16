@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>14장 — 제대로 만든 모달 (좋은 예)</title>
+<style>
+  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; color:#1a1a1a; background:#fff;
+         max-width:720px; margin:0 auto; padding:40px 24px; line-height:1.7; }
+  h1 { font-size:1.3rem; }
+  a { color:#1d4ed8; }
+  :focus-visible { outline:3px solid #1d4ed8; outline-offset:3px; }
+  .notice { border:2px solid #166534; background:#f0fdf4; color:#14532d; border-radius:10px;
+            padding:12px 16px; margin:20px 0; }
+  .try { border:2px solid #1d4ed8; background:#eff6ff; border-radius:10px; padding:14px 18px; margin:24px 0; }
+  .try h2 { font-size:1rem; margin:0 0 8px; }
+  .stage { border:1px dashed #999; border-radius:12px; padding:28px 24px; margin:28px 0; text-align:center; }
+  button { font-size:16px; font-family:inherit; padding:12px 24px; border:0; border-radius:8px;
+           background:#4f46e5; color:#fff; cursor:pointer; }
+
+  /* 네이티브 dialog를 사용합니다. 포커스 이동, 순환, ESC 닫기, 배경 비활성화가 기본으로 딸려 옵니다. */
+  dialog { border:0; border-radius:12px; padding:28px; max-width:400px; }
+  dialog::backdrop { background:rgba(0,0,0,.5); }
+  dialog h2 { margin-top:0; font-size:1.1rem; }
+  dialog .close { background:#e5e7eb; color:#111; margin-top:16px; }
+
+  footer { margin-top:48px; font-size:.85rem; color:#555; }
+  code { background:#f3f4f6; padding:2px 5px; border-radius:4px; }
+</style>
+</head>
+<body>
+<header>
+  <nav aria-label="상위 이동"><a href="../">데모 목록으로</a></nav>
+  <h1>14장 — 제대로 만든 모달</h1>
+  <div class="notice" role="note">✅ 같은 모달을 네이티브 <code>&lt;dialog&gt;</code>로 만든 예입니다.
+    4계명이 전부 지켜집니다.</div>
+</header>
+
+<main>
+  <div class="try">
+    <h2>이렇게 해보세요</h2>
+    <ol>
+      <li>Tab으로 <strong>신청 취소</strong>까지 가서 Enter로 여세요. 포커스가 모달 안으로 들어갑니다.</li>
+      <li>Tab을 계속 눌러보세요. 모달 밖으로 나가지 않고 순환합니다.</li>
+      <li><strong>ESC</strong>를 누르면 닫힙니다. 따로 코드를 쓰지 않았는데도요.</li>
+      <li>닫힌 뒤 Tab을 눌러보세요. 포커스가 열었던 버튼으로 돌아와 있습니다.</li>
+    </ol>
+  </div>
+
+  <div class="stage">
+    <button type="button" id="openBtn">신청 취소</button>
+  </div>
+
+  <dialog id="dlg" aria-labelledby="dlgTitle">
+    <h2 id="dlgTitle">정말 취소하시겠어요?</h2>
+    <p>취소하면 예약이 사라집니다.</p>
+    <button type="button" class="close" id="closeBtn">닫기</button>
+  </dialog>
+
+  <p>자바스크립트는 두 줄뿐입니다. <code>showModal()</code>과 <code>close()</code>.
+     포커스 이동, 포커스 순환, ESC 닫기, 배경 비활성화, 포커스 복귀를 브라우저가 대신해줍니다.
+     앞 페이지의 div 모달에서 손으로 구현해야 했던 것들입니다.</p>
+
+  <p><a href="broken-modal.html">문제가 있는 모달과 비교하기</a></p>
+</main>
+
+<footer>
+  《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
+  <a href="https://github.com/IsaacEryn/vibe-a11y-examples">예제 저장소</a>
+</footer>
+
+<script>
+  const dlg = document.getElementById('dlg');
+  document.getElementById('openBtn').addEventListener('click', () => dlg.showModal());
+  document.getElementById('closeBtn').addEventListener('click', () => dlg.close());
+</script>
+</body>
+</html>

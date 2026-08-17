@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12장 포커스가 보이는 화면 (도판용) — 바이브 코딩, 접근성까지 부탁해</title>
+<meta name="description" content="Tab으로 이동한 자리가 또렷하게 보이는 화면입니다. 책 그림의 오른쪽 절반입니다.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  /* 이 페이지는 책의 그림(포커스 링 비교)의 오른쪽 절반입니다.
+     포커스는 문서마다 하나뿐이라 두 상태를 한 화면에 담을 수 없어,
+     같은 폼을 두 페이지로 나누고 지면에서 나란히 붙입니다.
+     왼쪽 절반은 focus-off.html입니다. */
+  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#fff; color:#111; margin:0; }
+  .shot { padding:44px 24px; min-height:430px; box-sizing:border-box; }
+  .col { width:330px; margin:0 auto; }
+  .col > h2 { font-size:16px; text-align:center; margin:0 0 18px; }
+  .form { border:1px solid #d5d5d5; border-radius:12px; padding:20px 18px 22px; }
+  .field { margin:0 0 14px; }
+  label { display:block; font-size:13.5px; font-weight:600; margin:0 0 6px; }
+  input { width:100%; box-sizing:border-box; padding:9px 11px; font-size:14px;
+          font-family:inherit; border:1px solid #9ca3af; border-radius:7px; background:#fff; }
+  .send { width:100%; padding:11px; border-radius:8px; border:0; cursor:pointer;
+          background:#1d4ed8; color:#fff; font-size:15px; font-weight:700; font-family:inherit; }
+  .caption { font-size:12.5px; color:#666; margin-top:12px; text-align:center;
+             font-family:ui-monospace,monospace; line-height:1.6; }
+
+  /* 해법입니다. 마우스 클릭에는 조용하고 키보드 이동에만 또렷하게 그립니다. */
+  .form :focus-visible { outline:3px solid #1d4ed8; outline-offset:2px; }
+
+  /* 아래는 캡처 영역 밖의 안내입니다. */
+  .below { max-width:620px; margin:0 auto; padding:0 24px 56px; line-height:1.7; }
+  .below .notice { border:1px solid #166534; border-left-width:5px; background:#f0fdf4; color:#14532d;
+                   border-radius:10px; padding:14px 18px; margin:0 0 20px; }
+  .below p { margin:0 0 14px; }
+  .below a { color:#1d4ed8; }
+</style>
+</head>
+<body>
+  <div class="shot">
+    <div class="col">
+      <h2>포커스가 보이는 화면</h2>
+      <div class="form">
+        <div class="field">
+          <label for="b-name">이름</label>
+          <input id="b-name" type="text" value="홍길동">
+        </div>
+        <div class="field">
+          <label for="b-mail">이메일</label>
+          <!-- Tab을 두 번 누른 상태를 그대로 재현하려고 포커스를 여기에 둡니다. -->
+          <input id="b-mail" type="email" value="hong@example.com" autofocus>
+        </div>
+        <button type="button" class="send">신청하기</button>
+      </div>
+      <p class="caption">:focus-visible<br>포커스가 이메일 칸에 있다는 것이 보인다</p>
+    </div>
+  </div>
+
+  <div class="below">
+    <div class="notice">
+      <p><strong>올바르게 고친 예입니다.</strong>
+         포커스가 이메일 칸에 들어와 있고, 파란 테두리로 그 사실이 보입니다.</p>
+    </div>
+    <p>이 페이지는 책 그림의 오른쪽 절반입니다. 포커스는 문서마다 하나뿐이라
+       '보이는 화면'과 '보이지 않는 화면'을 한 페이지에 함께 둘 수 없어서,
+       같은 폼을 두 페이지로 나눠두었습니다.</p>
+    <p><a href="focus-off.html">포커스 표시를 지운 화면 보기</a> ·
+       <a href="../">실습 데모 목록으로</a></p>
+  </div>
+</body>
+</html>

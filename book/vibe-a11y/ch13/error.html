@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>13장 오류 메시지 비교 — 바이브 코딩, 접근성까지 부탁해</title>
+<meta name="description" content="어디가 왜 잘못됐고 어떻게 고치는지를 필드 곁에서 말하는 오류 표시를 비교합니다.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  /* 이 페이지는 책의 그림(좋은 오류 표시)의 원본입니다.
+     두 폼 모두 제출 직후, 오류가 표시된 상태로 두었습니다. */
+  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#fff; color:#111; margin:0; }
+  .compare-row { display:flex; gap:56px; justify-content:center; align-items:flex-start;
+                 padding:44px 24px; flex-wrap:wrap; min-height:540px; align-content:flex-start; }
+  .col { width:330px; }
+  .col > h2 { font-size:16px; text-align:center; margin:0 0 6px; }
+  .ask { font-size:12.5px; color:#555; text-align:center; margin:0 0 16px; }
+  .form { border:1px solid #d5d5d5; border-radius:12px; padding:20px 18px 22px; }
+  .field { margin:0 0 16px; }
+  label { display:block; font-size:13.5px; font-weight:600; margin:0 0 6px; }
+  input { width:100%; box-sizing:border-box; padding:9px 11px; font-size:14px;
+          font-family:inherit; border:1px solid #9ca3af; border-radius:7px; background:#fff; }
+  input.wrong { border-color:#dc2626; border-width:2px; }
+  .send { width:100%; padding:11px; border-radius:8px; border:0; cursor:pointer;
+          background:#1d4ed8; color:#fff; font-size:15px; font-weight:700; font-family:inherit; }
+  /* 나쁜 예: 폼 맨 위에 뭉뚱그린 한 줄 */
+  .top-err { background:#fee2e2; color:#7f1d1d; border-radius:8px; padding:10px 12px;
+             font-size:13.5px; margin:0 0 16px; }
+  /* 좋은 예: 필드 곁에서 어디가·왜·어떻게 */
+  .field-err { display:flex; gap:6px; align-items:flex-start; font-size:12.5px;
+               color:#b91c1c; margin:6px 0 0; line-height:1.55; }
+  .field-err b { flex:none; }
+  .summary { border:1px solid #dc2626; border-left-width:5px; background:#fef2f2; color:#7f1d1d;
+             border-radius:8px; padding:12px 14px; margin:0 0 16px; font-size:13px; line-height:1.6; }
+  .summary h3 { font-size:13.5px; margin:0 0 6px; }
+  .summary a { color:#7f1d1d; }
+  .caption { font-size:12.5px; color:#666; margin-top:12px; text-align:center;
+             font-family:ui-monospace,monospace; line-height:1.6; }
+  :focus-visible { outline:3px solid #1d4ed8; outline-offset:2px; }
+
+  /* 아래는 비교 영역 밖의 안내입니다. */
+  .below { max-width:660px; margin:0 auto; padding:0 24px 56px; line-height:1.7; }
+  .below .notice { border:1px solid #92400e; border-left-width:5px; background:#fffbeb; color:#78350f;
+                   border-radius:10px; padding:14px 18px; margin:0 0 20px; }
+  .below p { margin:0 0 14px; }
+  .below a { color:#1d4ed8; }
+  .below footer { margin-top:28px; padding-top:16px; border-top:1px solid #d4d4d8;
+                  font-size:.85rem; color:#52525b; }
+  .below footer a { color:#52525b; }
+</style>
+</head>
+<body>
+  <div class="compare-row">
+    <div class="col">
+      <h2>흔한 오류 표시</h2>
+      <p class="ask">신청하기를 누른 직후</p>
+      <div class="form">
+        <div class="top-err">입력값을 확인해주세요.</div>
+        <div class="field">
+          <label for="b-mail">이메일</label>
+          <input id="b-mail" type="text" class="wrong" value="hong@">
+        </div>
+        <div class="field">
+          <label for="b-pw">비밀번호</label>
+          <input id="b-pw" type="password" class="wrong" value="1234">
+        </div>
+        <button type="button" class="send">신청하기</button>
+      </div>
+      <p class="caption">어느 칸이 왜 틀렸는지 말하지 않는다<br>
+        빨간 테두리를 못 보면 단서가 없다</p>
+    </div>
+
+    <div class="col">
+      <h2>어디가·왜·어떻게를 말하는 표시</h2>
+      <p class="ask">신청하기를 누른 직후</p>
+      <div class="form">
+        <div class="summary" role="alert">
+          <h3>두 곳을 고쳐야 신청이 완료됩니다</h3>
+          <a href="#g-mail">이메일</a> · <a href="#g-pw">비밀번호</a>
+        </div>
+        <div class="field">
+          <label for="g-mail">이메일</label>
+          <input id="g-mail" type="text" class="wrong" value="hong@"
+                 aria-describedby="g-mail-err" aria-invalid="true">
+          <p class="field-err" id="g-mail-err"><b>오류</b>
+            <span>@ 뒤에 주소가 없습니다. 예: hong@example.com</span></p>
+        </div>
+        <div class="field">
+          <label for="g-pw">비밀번호</label>
+          <input id="g-pw" type="password" class="wrong" value="1234"
+                 aria-describedby="g-pw-err" aria-invalid="true">
+          <p class="field-err" id="g-pw-err"><b>오류</b>
+            <span>4자입니다. 8자 이상으로 다시 입력해주세요.</span></p>
+        </div>
+        <button type="button" class="send">신청하기</button>
+      </div>
+      <p class="caption">요약이 몇 곳인지 알려주고 각 칸으로 데려간다<br>
+        칸 곁의 문장이 무엇을 어떻게 고칠지 말한다</p>
+    </div>
+  </div>
+
+  <div class="below">
+    <div class="notice">
+      <p><strong>왼쪽은 의도적으로 잘못 만든 교보재입니다.</strong>
+         오류를 빨간 테두리와 "입력값을 확인해주세요" 한 줄로만 알립니다.
+         색을 구별하기 어렵거나 화면을 보지 못하는 사용자에게는 어디를 고쳐야 하는지
+         알 방법이 없습니다.</p>
+    </div>
+    <p>좋은 오류 표시는 세 가지를 말합니다. <strong>어디가</strong> 잘못됐는지(칸을 특정),
+       <strong>왜</strong> 잘못됐는지(규칙), <strong>어떻게</strong> 고치는지(예시).
+       오른쪽 폼의 문장이 그렇게 쓰여 있습니다(WCAG 3.3.1 오류 식별, 3.3.3 오류 수정 제안).</p>
+    <p>구조도 함께 봅니다. 오류 문장은 <code>aria-describedby</code>로 칸에 묶여 있어
+       스크린리더가 칸을 읽을 때 함께 읽습니다. 요약 상자는 <code>role="alert"</code>이라
+       제출 직후 바로 안내되고, 각 링크는 문제가 있는 칸으로 포커스를 보냅니다.
+       책 13장에서 다룹니다.</p>
+    <p><a href="../">실습 데모 목록으로</a> ·
+       <a href="compare.html">이름표 비교 보기</a></p>
+    <footer>
+      《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
+      <a href="https://github.com/IsaacEryn/vibe-a11y-examples">소스 보기</a>
+    </footer>
+  </div>
+</body>
+</html>

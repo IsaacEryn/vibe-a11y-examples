@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>13장 이름표가 사라지는 폼 — 바이브 코딩, 접근성까지 부탁해</title>
+<meta name="description" content="placeholder만 있는 폼과 label이 있는 폼을 입력 중인 상태로 비교합니다.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  /* 이 페이지는 책의 그림(placeholder만 있는 폼과 label이 있는 폼의 입력 중 화면)의 원본입니다.
+     두 폼 모두 값이 채워진 상태로 두어, 입력을 시작한 뒤의 화면을 그대로 보여줍니다. */
+  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#fff; color:#111; margin:0; }
+  .compare-row { display:flex; gap:56px; justify-content:center; align-items:flex-start;
+                 padding:44px 24px; flex-wrap:wrap; min-height:520px; align-content:flex-start; }
+  .col { width:320px; }
+  .col > h2 { font-size:16px; text-align:center; margin:0 0 18px; }
+  .form { border:1px solid #d5d5d5; border-radius:12px; padding:20px 18px 22px; }
+  .field { margin:0 0 16px; }
+  label { display:block; font-size:13.5px; font-weight:600; margin:0 0 6px; }
+  input, select { width:100%; box-sizing:border-box; padding:9px 11px; font-size:14px;
+                  font-family:inherit; border:1px solid #9ca3af; border-radius:7px; background:#fff; }
+  .hint { font-size:12.5px; color:#4b5563; margin:6px 0 0; }
+  .send { width:100%; padding:11px; border-radius:8px; border:0; cursor:pointer;
+          background:#1d4ed8; color:#fff; font-size:15px; font-weight:700; font-family:inherit; }
+  .caption { font-size:12.5px; color:#666; margin-top:12px; text-align:center;
+             font-family:ui-monospace,monospace; line-height:1.6; }
+  .ask { font-size:12.5px; color:#555; text-align:center; margin:-10px 0 16px; }
+  :focus-visible { outline:3px solid #1d4ed8; outline-offset:2px; }
+
+  /* 아래는 비교 영역 밖의 안내입니다. */
+  .below { max-width:660px; margin:0 auto; padding:0 24px 56px; line-height:1.7; }
+  .below .notice { border:1px solid #92400e; border-left-width:5px; background:#fffbeb; color:#78350f;
+                   border-radius:10px; padding:14px 18px; margin:0 0 20px; }
+  .below p { margin:0 0 14px; }
+  .below a { color:#1d4ed8; }
+  .below footer { margin-top:28px; padding-top:16px; border-top:1px solid #d4d4d8;
+                  font-size:.85rem; color:#52525b; }
+  .below footer a { color:#52525b; }
+</style>
+</head>
+<body>
+  <div class="compare-row">
+    <div class="col">
+      <h2>placeholder만 있는 폼</h2>
+      <p class="ask">세 칸을 채운 뒤의 화면</p>
+      <div class="form">
+        <div class="field"><input type="text" placeholder="이름" value="홍길동"></div>
+        <div class="field"><input type="tel" placeholder="연락처" value="01012345678"></div>
+        <div class="field"><input type="text" placeholder="희망 날짜 (YYYY-MM-DD)" value="2026-03-15"></div>
+        <button type="button" class="send">신청하기</button>
+      </div>
+      <p class="caption">입력하는 순간 이름표가 지워진다<br>
+        되돌아왔을 때 세 번째 칸이 무엇이었는지 알 수 없다</p>
+    </div>
+
+    <div class="col">
+      <h2>label이 있는 폼</h2>
+      <p class="ask">세 칸을 채운 뒤의 화면</p>
+      <div class="form">
+        <div class="field">
+          <label for="f-name">이름</label>
+          <input id="f-name" type="text" value="홍길동">
+        </div>
+        <div class="field">
+          <label for="f-tel">연락처</label>
+          <input id="f-tel" type="tel" value="01012345678" aria-describedby="f-tel-hint">
+          <p class="hint" id="f-tel-hint">숫자만 입력해도 됩니다</p>
+        </div>
+        <div class="field">
+          <label for="f-date">희망 날짜</label>
+          <input id="f-date" type="date" value="2026-03-15">
+        </div>
+        <button type="button" class="send">신청하기</button>
+      </div>
+      <p class="caption">이름표가 칸 위에 그대로 남는다<br>
+        형식 안내는 placeholder가 아니라 별도 문장으로</p>
+    </div>
+  </div>
+
+  <div class="below">
+    <div class="notice">
+      <p><strong>왼쪽은 의도적으로 잘못 만든 교보재입니다.</strong>
+         이름표를 <code>placeholder</code>로만 두었습니다. 디자인은 깔끔해 보이지만,
+         입력을 시작하는 순간 그 칸이 무엇을 묻던 칸인지 화면에서 사라집니다.</p>
+    </div>
+    <p>이 문제는 잠깐 다른 일을 하다 돌아왔을 때, 제출 전에 검토할 때, 오류를 고치려고
+       되짚을 때 드러납니다. 스크린리더 사용자에게는 더 이릅니다. 브라우저에 따라
+       placeholder를 읽지 않거나, 읽더라도 값이 들어가면 그만 읽습니다.</p>
+    <p>오른쪽처럼 <code>&lt;label for&gt;</code>로 이름표를 연결하고, 형식 안내가 필요하면
+       placeholder 대신 별도 문장으로 두고 <code>aria-describedby</code>로 묶습니다.
+       책 13장에서 다룹니다.</p>
+    <p><a href="../">실습 데모 목록으로</a> ·
+       <a href="error.html">오류 메시지 비교 보기</a></p>
+    <footer>
+      《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
+      <a href="https://github.com/IsaacEryn/vibe-a11y-examples">소스 보기</a>
+    </footer>
+  </div>
+</body>
+</html>

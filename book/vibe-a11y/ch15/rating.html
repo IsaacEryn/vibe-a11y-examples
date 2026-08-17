@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>15장 드래그 별점과 탭 대안 — 바이브 코딩, 접근성까지 부탁해</title>
+<meta name="description" content="드래그로만 매기는 별점과, 눌러서도 매길 수 있는 별점을 비교합니다.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  /* 이 페이지는 책의 그림(드래그 별점과 탭 대안이 함께 있는 UI)의 원본입니다. */
+  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#fff; color:#111; margin:0; }
+  .compare-row { display:flex; gap:56px; justify-content:center; align-items:flex-start;
+                 padding:44px 24px; flex-wrap:wrap; min-height:470px; align-content:flex-start; }
+  .col { width:320px; }
+  .col > h2 { font-size:16px; text-align:center; margin:0 0 18px; }
+  .card { border:1px solid #d5d5d5; border-radius:12px; padding:20px 18px 22px; }
+  .card h3 { font-size:15px; margin:0 0 4px; }
+  .card .sub { font-size:13px; color:#4b5563; margin:0 0 16px; }
+
+  /* 드래그로만 되는 별점: 손잡이를 끌어야 값이 바뀝니다. */
+  .track { position:relative; height:34px; background:#f3f4f6; border-radius:999px; margin:0 0 10px; }
+  .fill  { position:absolute; left:0; top:0; bottom:0; width:60%; background:#fde68a; border-radius:999px; }
+  .knob  { position:absolute; left:60%; top:50%; transform:translate(-50%,-50%);
+           width:26px; height:26px; border-radius:50%; background:#f59e0b;
+           box-shadow:0 1px 4px rgba(0,0,0,.25); cursor:grab; }
+  .drag-hint { font-size:12.5px; color:#6b7280; margin:0; text-align:center; }
+
+  /* 눌러서도 되는 별점: 별 하나하나가 버튼입니다. */
+  .stars { display:flex; gap:6px; justify-content:center; margin:0 0 10px; }
+  .star { width:44px; height:44px; border:1px solid #e5e7eb; border-radius:10px; background:#fff;
+          font-size:22px; line-height:1; cursor:pointer; color:#d1d5db; font-family:inherit; }
+  .star.on { color:#f59e0b; border-color:#fcd34d; background:#fffbeb; }
+  .value { font-size:13.5px; text-align:center; margin:0; color:#374151; }
+  .value b { color:#111; }
+  .caption { font-size:12.5px; color:#666; margin-top:12px; text-align:center;
+             font-family:ui-monospace,monospace; line-height:1.6; }
+  :focus-visible { outline:3px solid #1d4ed8; outline-offset:2px; }
+
+  /* 아래는 비교 영역 밖의 안내입니다. */
+  .below { max-width:660px; margin:0 auto; padding:0 24px 56px; line-height:1.7; }
+  .below .notice { border:1px solid #92400e; border-left-width:5px; background:#fffbeb; color:#78350f;
+                   border-radius:10px; padding:14px 18px; margin:0 0 20px; }
+  .below p { margin:0 0 14px; }
+  .below a { color:#1d4ed8; }
+  .below footer { margin-top:28px; padding-top:16px; border-top:1px solid #d4d4d8;
+                  font-size:.85rem; color:#52525b; }
+  .below footer a { color:#52525b; }
+</style>
+</head>
+<body>
+  <div class="compare-row">
+    <div class="col">
+      <h2>드래그로만 되는 별점</h2>
+      <div class="card">
+        <h3>수업은 어떠셨나요?</h3>
+        <p class="sub">손잡이를 끌어 점수를 정해주세요</p>
+        <div class="track">
+          <div class="fill"></div>
+          <div class="knob"></div>
+        </div>
+        <p class="drag-hint">← 끌어서 조절 →</p>
+      </div>
+      <p class="caption">한 손으로 폰을 쥔 사람, 떨림이 있는 사람,<br>
+        키보드만 쓰는 사람은 값을 바꿀 수 없다</p>
+    </div>
+
+    <div class="col">
+      <h2>눌러서도 되는 별점</h2>
+      <div class="card">
+        <h3>수업은 어떠셨나요?</h3>
+        <p class="sub">별을 누르거나 손잡이를 끌어 정해주세요</p>
+        <div class="stars" role="group" aria-label="별점 선택">
+          <button type="button" class="star on" aria-pressed="true" aria-label="1점">★</button>
+          <button type="button" class="star on" aria-pressed="true" aria-label="2점">★</button>
+          <button type="button" class="star on" aria-pressed="true" aria-label="3점">★</button>
+          <button type="button" class="star" aria-pressed="false" aria-label="4점">★</button>
+          <button type="button" class="star" aria-pressed="false" aria-label="5점">★</button>
+        </div>
+        <p class="value">현재 <b>3점</b> · 별을 누르거나 ← → 키로도 바꿉니다</p>
+      </div>
+      <p class="caption">같은 일을 누르기로도 할 수 있다<br>
+        별 하나가 44×44px, 한 손으로도 닿는다</p>
+    </div>
+  </div>
+
+  <div class="below">
+    <div class="notice">
+      <p><strong>왼쪽은 의도적으로 잘못 만든 교보재입니다.</strong>
+         값을 바꾸는 길이 드래그 하나뿐입니다. 정밀하게 끄는 동작은 떨림이 있는 사용자,
+         한 손으로 폰을 쥔 사용자, 키보드나 스위치를 쓰는 사용자에게 벽이 됩니다.</p>
+    </div>
+    <p>WCAG 2.5.7(끌기 동작)은 끌어서 하는 모든 조작에 <strong>끌지 않고도 되는 길</strong>을
+       하나 두라고 말합니다. 드래그를 없애라는 것이 아니라, 같은 일을 눌러서도 할 수 있게
+       하라는 것입니다. 오른쪽에서는 별을 눌러도 되고 방향키로도 바뀝니다.</p>
+    <p>터치 대상 크기도 함께 봅니다. 별 하나가 44×44px입니다. WCAG 2.5.8은 최소 24×24px를
+       요구하고, 모바일에서 편안한 크기는 44px 안팎입니다. 책 15장에서 다룹니다.</p>
+    <p><a href="../">실습 데모 목록으로</a> ·
+       <a href="no-zoom.html">확대를 막은 화면 보기</a> ·
+       <a href="ok-zoom.html">확대되는 화면 보기</a></p>
+    <footer>
+      《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
+      <a href="https://github.com/IsaacEryn/vibe-a11y-examples">소스 보기</a>
+    </footer>
+  </div>
+</body>
+</html>

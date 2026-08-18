@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
   /* 이 페이지는 책의 그림(컬러/흑백 비교)의 원본입니다.
-     오른쪽 열에는 grayscale 필터만 걸었습니다. 마크업은 왼쪽과 똑같습니다. */
+     「색을 걷어낸 화면」에는 grayscale 필터만 걸었습니다. 마크업은 「화면에서 보이는 대로」와 똑같습니다. */
   body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#fff; color:#111; margin:0; }
   .compare-row { display:flex; gap:48px; justify-content:center; align-items:flex-start;
                  padding:44px 24px; flex-wrap:wrap; min-height:560px; align-content:flex-start; }
@@ -92,19 +92,19 @@
           <div class="slot"><span>16:00</span><span class="tag full">마감</span></div>
         </div>
       </div>
-      <p class="caption">위쪽은 어느 점이 여유이고 마감인지 알 수 없다<br>
-        아래쪽은 글자가 남아 그대로 읽힌다</p>
+      <p class="caption">색으로만 알리는 현황판은 어느 점이 여유이고 마감인지 알 수 없다<br>
+        글자를 함께 넣은 현황판은 그대로 읽힌다</p>
     </div>
   </div>
 
   <div class="below">
     <div class="notice">
-      <p><strong>위쪽 현황판은 의도적으로 잘못 만든 교보재입니다.</strong>
+      <p><strong>「색으로만 알리는 현황판」이 의도적으로 잘못 만든 교보재입니다.</strong>
          자리 상태를 초록, 노랑, 빨강 점으로만 알립니다. 색을 구별하기 어려운 사용자에게는
          점이 보이더라도 그것이 무엇을 뜻하는지 알 방법이 없습니다.</p>
     </div>
-    <p>오른쪽 열은 마크업이 왼쪽과 한 글자도 다르지 않습니다. CSS 필터로 색만 걷어냈습니다.
-       그런데 위쪽 현황판은 정보가 통째로 사라지고, 아래쪽은 그대로 읽힙니다. 색은 정보를
+    <p>「색을 걷어낸 화면」은 마크업이 「화면에서 보이는 대로」와 한 글자도 다르지 않습니다. CSS 필터로 색만 걷어냈습니다.
+       그런데 색으로만 알리는 현황판은 정보가 통째로 사라지고, 글자를 함께 넣은 현황판은 그대로 읽힙니다. 색은 정보를
        거드는 데는 좋지만 혼자 정보를 지고 있으면 안 된다는 뜻입니다(WCAG 1.4.1 색의 사용).</p>
     <p>여러분의 화면에서도 같은 실험을 할 수 있습니다. 크롬 개발자도구의 렌더링 패널에서
        색각 이상을 흉내 내거나, 화면을 회색조로 두고 스크린샷을 찍어보세요.

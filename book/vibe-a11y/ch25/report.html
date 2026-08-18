@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>25장 — 진단 결과와 수리 후 재검사</title>
+<meta name="description" content="25장 시작 코드를 검사한 결과와 수리 후 재검사 결과를 원인 단위로 비교합니다.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  /* 이 페이지는 책의 그림(진단 결과와 수리 후 재검사 비교)의 원본입니다. */
+  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#fff; color:#18181b;
+         margin:0; line-height:1.6; }
+  .shot { padding:30px 28px 34px; }
+  h1 { font-size:19px; margin:0 0 4px; }
+  .when { font-size:13px; color:#52525b; margin:0 0 20px; }
+
+  .score { display:flex; gap:18px; margin:0 0 22px; }
+  .box { flex:1; border:1px solid #e4e4e7; border-radius:12px; padding:14px 16px 16px; }
+  .box .lab { font-size:13px; color:#52525b; margin:0 0 6px; }
+  .box .num { font-size:30px; font-weight:700; margin:0; letter-spacing:-1px; }
+  .box .sub { font-size:12.5px; color:#52525b; margin:4px 0 0; }
+  .before .num { color:#b91c1c; }
+  .after .num { color:#15803d; }
+
+  table { width:100%; border-collapse:collapse; font-size:13.5px; }
+  caption { text-align:left; font-size:14px; font-weight:700; margin:0 0 8px; }
+  th, td { border-bottom:1px solid #e4e4e7; padding:8px 6px; text-align:left; vertical-align:top; }
+  th { font-size:12.5px; color:#52525b; font-weight:600; border-bottom:1.5px solid #d4d4d8; }
+  td.n { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .gone { color:#15803d; font-weight:700; }
+  .grp { background:#fafafa; font-weight:700; }
+  .note { font-size:12.5px; color:#52525b; margin:14px 0 0; }
+</style>
+</head>
+<body>
+<div class="shot">
+  <h1>초록상점 카페 — 접근성 검사</h1>
+  <p class="when">수리 전후 같은 도구로 세 페이지를 검사했습니다</p>
+
+  <div class="score">
+    <div class="box before">
+      <p class="lab">수리 전</p>
+      <p class="num">63.6%</p>
+      <p class="sub">위반 47건 · 규칙 4개</p>
+    </div>
+    <div class="box after">
+      <p class="lab">수리 후</p>
+      <p class="num">100%</p>
+      <p class="sub">위반 0건</p>
+    </div>
+  </div>
+
+  <table>
+    <caption>원인 단위로 묶은 결과</caption>
+    <thead>
+      <tr><th>원인</th><th>고친 곳</th><th class="n">전</th><th class="n">후</th></tr>
+    </thead>
+    <tbody>
+      <tr class="grp"><td colspan="4">자동 검사로 잡힌 것</td></tr>
+      <tr><td>카드와 버튼이 div</td><td>카드 → a, 나머지 → button</td><td class="n">16</td><td class="n gone">0</td></tr>
+      <tr><td>대체 텍스트가 파일명</td><td>메뉴 사진 5종, 약도</td><td class="n">10</td><td class="n gone">0</td></tr>
+      <tr><td>색 변수 두 개</td><td>--muted, --brand</td><td class="n">18</td><td class="n gone">0</td></tr>
+      <tr><td>확대 차단</td><td>viewport 세 줄</td><td class="n">3</td><td class="n gone">0</td></tr>
+      <tr class="grp"><td colspan="4">사람이 찾은 것 (도구는 보고하지 않음)</td></tr>
+      <tr><td>포커스 표시 제거</td><td>outline:none → :focus-visible</td><td class="n">전역</td><td class="n gone">해결</td></tr>
+      <tr><td>메뉴 순서 불일치</td><td>CSS order 제거, 마크업 정렬</td><td class="n">3면</td><td class="n gone">해결</td></tr>
+      <tr><td>div 오버레이 모달</td><td>&lt;dialog&gt; + showModal()</td><td class="n">1</td><td class="n gone">해결</td></tr>
+      <tr><td>검색창에 이름표 없음</td><td>label for 연결</td><td class="n">1</td><td class="n gone">해결</td></tr>
+      <tr><td>알레르기를 색으로만</td><td>글자 병기</td><td class="n">1</td><td class="n gone">해결</td></tr>
+      <tr><td>제목 구조 없음</td><td>h1~h3 부여</td><td class="n">3면</td><td class="n gone">해결</td></tr>
+      <tr><td>랜드마크 없음</td><td>header·nav·main·footer, 표</td><td class="n">3면</td><td class="n gone">해결</td></tr>
+      <tr><td>작고 이름 없는 아이콘</td><td>44px + aria-label</td><td class="n">3</td><td class="n gone">해결</td></tr>
+    </tbody>
+  </table>
+
+  <p class="note">증상 예순 건 남짓이 원인 열두 개에서 나왔습니다. 카드 컴포넌트 하나가 세 페이지에
+     복제되어 있었고, 색 변수 두 줄이 대비 미달 열여덟 건을 만들고 있었습니다.</p>
+</div>
+</body>
+</html>

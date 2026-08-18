@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오시는 길 — 초록상점 카페</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <span class="logo">초록상점 카페</span>
+    <nav class="nav" aria-label="주요 메뉴">
+      <ul>
+          <li><a href="index.html">홈</a></li>
+          <li><a href="menu.html">메뉴</a></li>
+          <li><a href="location.html" aria-current="page">오시는 길</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="hero">
+      <h1>오시는 길</h1>
+      <p class="sub">지하철 3번 출구에서 걸어서 5분입니다.</p>
+    </div>
+
+    <section class="section">
+      <h2>약도</h2>
+      <img class="thumb" style="width:100%;max-width:560px;height:220px"
+           src="images/map.png"
+           alt="지하철 3번 출구에서 직진하다 첫 사거리에서 왼쪽으로 꺾으면 오른편에 있습니다">
+      <p class="sub">주차는 건물 뒤편에 두 자리 있습니다.</p>
+    </section>
+
+    <section class="section">
+      <h2>영업시간</h2>
+      <table class="hours">
+        <caption>요일별 영업시간</caption>
+        <tbody>
+          <tr><th scope="row">평일</th><td>08:00 - 21:00</td></tr>
+          <tr><th scope="row">토요일</th><td>10:00 - 21:00</td></tr>
+          <tr><th scope="row">일요일</th><td>휴무</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>함께 보기</h2>
+      <ul class="cards">
+      <li class="card">
+        <img class="thumb" src="images/menu1.jpg" alt="흰 잔에 담긴 핸드드립 커피">
+        <div class="body">
+          <h3><a href="menu.html">오늘의 메뉴 보기</a></h3>
+          <p class="price">커피와 디저트</p>
+        </div>
+      </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>문의</h2>
+      <p class="sub">전화로 문의해 주세요.</p>
+      <button type="button" class="mini" aria-label="전화 걸기" onclick="alert('070-0000-0000')">☎</button>
+      <button type="button" class="mini" aria-label="인스타그램 열기" onclick="alert('인스타그램 준비 중')">◎</button>
+      <button type="button" class="mini" aria-label="지도 앱으로 열기" onclick="alert('지도 앱 준비 중')">▶</button>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">초록상점 카페 · 서울 어딘가 · 070-0000-0000</div>
+</footer>
+
+</body>
+</html>

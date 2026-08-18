@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>메뉴 — 초록상점 카페</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <span class="logo">초록상점 카페</span>
+    <nav class="nav" aria-label="주요 메뉴">
+      <ul>
+          <li><a href="index.html">홈</a></li>
+          <li><a href="menu.html" aria-current="page">메뉴</a></li>
+          <li><a href="location.html">오시는 길</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="hero">
+      <h1>메뉴</h1>
+      <p class="sub">계절에 따라 조금씩 바뀝니다.</p>
+      <form class="search" onsubmit="event.preventDefault(); alert('검색은 준비 중입니다');">
+        <div>
+          <label for="q">메뉴 검색</label>
+          <input id="q" type="search" name="q">
+        </div>
+        <button type="submit" class="go">검색</button>
+      </form>
+    </div>
+
+    <section class="section">
+      <h2>커피</h2>
+      <ul class="cards">
+      <li class="card">
+        <img class="thumb" src="images/menu1.jpg" alt="흰 잔에 담긴 핸드드립 커피">
+        <div class="body">
+          <h3><a href="#">핸드드립 커피</a></h3>
+          <p class="price">5,000원</p>
+        </div>
+      </li>
+      <li class="card">
+        <img class="thumb" src="images/menu4.jpg" alt="얼음을 채운 아메리카노">
+        <div class="body">
+          <h3><a href="#">아메리카노</a></h3>
+          <p class="price">4,000원</p>
+        </div>
+      </li>
+      <li class="card">
+        <img class="thumb" src="images/menu5.jpg" alt="거품 무늬를 올린 카페 라테">
+        <div class="body">
+          <h3><a href="#">카페 라테</a></h3>
+          <p class="price">4,500원</p>
+        </div>
+      </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>음료와 디저트</h2>
+      <ul class="cards">
+      <li class="card">
+        <img class="thumb" src="images/menu2.jpg" alt="레몬 조각을 올린 과일 에이드">
+        <div class="body">
+          <h3><a href="#">계절 과일 에이드</a></h3>
+          <p class="price">6,500원</p>
+        </div>
+      </li>
+      <li class="card">
+        <img class="thumb" src="images/menu3.jpg" alt="조각으로 자른 치즈 케이크">
+        <div class="body">
+          <h3><a href="#">치즈 케이크</a></h3>
+          <p class="price">6,000원</p>
+        </div>
+      </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>알레르기 표시</h2>
+      <ul class="allergy">
+        <li><span class="mark">우유 포함</span> · 카페 라테, 치즈 케이크</li>
+        <li><span class="mark">견과류 포함</span> · 치즈 케이크</li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">초록상점 카페 · 서울 어딘가 · 070-0000-0000</div>
+</footer>
+
+</body>
+</html>

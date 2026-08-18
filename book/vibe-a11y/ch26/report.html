@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>26장 — 첫 감사 보고서</title>
+<meta name="description" content="운영 1년차 사이트의 표본 일곱 장을 검사하고, 위반을 원인 단위로 묶어 수리 계획으로 바꾼 보고서입니다.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  /* 이 페이지는 책의 그림(첫 감사 보고서와 원인 단위 수리 계획)의 원본입니다. */
+  body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#fff; color:#18181b;
+         margin:0; line-height:1.6; }
+  .shot { padding:28px 28px 32px; }
+  h1 { font-size:19px; margin:0 0 4px; }
+  .when { font-size:13px; color:#52525b; margin:0 0 18px; }
+
+  .kpi { display:flex; gap:14px; margin:0 0 20px; }
+  .kpi div { flex:1; border:1px solid #e4e4e7; border-radius:10px; padding:11px 13px; }
+  .kpi .lab { font-size:12.5px; color:#52525b; margin:0 0 4px; }
+  .kpi .num { font-size:23px; font-weight:700; margin:0; letter-spacing:-.5px; }
+
+  table { width:100%; border-collapse:collapse; font-size:13px; margin:0 0 18px; }
+  caption { text-align:left; font-size:14px; font-weight:700; margin:0 0 7px; }
+  th, td { border-bottom:1px solid #e4e4e7; padding:7px 6px; text-align:left; vertical-align:top; }
+  th { font-size:12px; color:#52525b; font-weight:600; border-bottom:1.5px solid #d4d4d8; }
+  td.n { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .sev { font-size:11.5px; font-weight:700; padding:1px 7px; border-radius:999px; white-space:nowrap; }
+  .s1 { background:#fee2e2; color:#991b1b; }
+  .s2 { background:#fef3c7; color:#92400e; }
+  .kind { font-size:11.5px; padding:1px 7px; border-radius:999px; white-space:nowrap; }
+  .k-code { background:#e0e7ff; color:#3730a3; }
+  .k-cont { background:#fce7f3; color:#9d174d; }
+  .note { font-size:12.5px; color:#52525b; margin:0; }
+</style>
+</head>
+<body>
+<div class="shot">
+  <h1>초록상점 카페 — 첫 접근성 감사</h1>
+  <p class="when">전체 13면 중 표본 7면 검사 · 준수율 58.3%</p>
+
+  <div class="kpi">
+    <div><p class="lab">검사한 표본</p><p class="num">7면</p></div>
+    <div><p class="lab">위반</p><p class="num">58건</p></div>
+    <div><p class="lab">원인</p><p class="num">9개</p></div>
+    <div><p class="lab">준수율</p><p class="num">58.3%</p></div>
+  </div>
+
+  <table>
+    <caption>위반을 원인 단위로 묶은 수리 계획</caption>
+    <thead>
+      <tr><th>순서</th><th>원인</th><th>성격</th><th>고치면 낫는 곳</th><th class="n">건수</th><th>심각도</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="n">1</td><td>클래스 신청 폼에 이름표가 없다</td>
+          <td><span class="kind k-code">코드</span></td><td>핵심 과업 3면</td>
+          <td class="n">4</td><td><span class="sev s1">차단</span></td></tr>
+      <tr><td class="n">2</td><td>카드·버튼이 div라 키보드로 못 누른다</td>
+          <td><span class="kind k-code">코드</span></td><td>공통 컴포넌트 · 13면</td>
+          <td class="n">13</td><td><span class="sev s1">차단</span></td></tr>
+      <tr><td class="n">3</td><td>색 변수 두 개의 대비 미달</td>
+          <td><span class="kind k-code">코드</span></td><td>공통 스타일 · 13면</td>
+          <td class="n">30</td><td><span class="sev s2">보통</span></td></tr>
+      <tr><td class="n">4</td><td>확대 차단 설정</td>
+          <td><span class="kind k-code">코드</span></td><td>공통 헤드 · 13면</td>
+          <td class="n">7</td><td><span class="sev s2">보통</span></td></tr>
+      <tr><td class="n">5</td><td>공지 이미지의 대체 텍스트</td>
+          <td><span class="kind k-cont">콘텐츠</span></td><td>공지 6면 + 배너 2장</td>
+          <td class="n">4</td><td><span class="sev s2">보통</span></td></tr>
+      <tr><td class="n">6</td><td>목록 페이지 번호가 span</td>
+          <td><span class="kind k-code">코드</span></td><td>공지 목록</td>
+          <td class="n">3</td><td><span class="sev s2">보통</span></td></tr>
+    </tbody>
+  </table>
+
+  <p class="note"><strong>콘텐츠 문제는 코드로 멈추지 않습니다.</strong> 5번은 관리자가 공지를 올릴 때마다
+     다시 생깁니다. 어떤 공지는 파일명이 그대로 들어갔고, 어떤 공지는 정보를 담은 이미지인데 비어 있고,
+     어떤 공지는 "여름 음료 사진"이라고만 적혀 있습니다. 등록 화면에 대체 텍스트 입력란을 필수로 만드는
+     것이 진짜 수리입니다.</p>
+</div>
+</body>
+</html>

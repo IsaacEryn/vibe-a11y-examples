@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>홈 — 초록상점 카페</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <span class="logo">초록상점 카페</span>
+    <nav class="nav" aria-label="주요 메뉴">
+      <ul>
+          <li><a href="index.html" aria-current="page">홈</a></li>
+          <li><a href="menu.html">메뉴</a></li>
+          <li><a href="location.html">오시는 길</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="hero">
+      <h1>동네에서 제일 조용한 카페</h1>
+      <p class="sub">원두는 매주 목요일에 볶습니다. 오후 2시 이후에는 자리가 넉넉합니다.</p>
+      <a class="cta" href="location.html">찾아오는 길 보기</a>
+    </div>
+
+    <section class="section">
+      <h2>오늘의 메뉴</h2>
+      <ul class="cards">
+      <li class="card">
+        <img class="thumb" src="images/menu1.jpg" alt="흰 잔에 담긴 핸드드립 커피">
+        <div class="body">
+          <h3><a href="menu.html">핸드드립 커피</a></h3>
+          <p class="price">5,000원</p>
+        </div>
+      </li>
+      <li class="card">
+        <img class="thumb" src="images/menu2.jpg" alt="레몬 조각을 올린 과일 에이드">
+        <div class="body">
+          <h3><a href="menu.html">계절 과일 에이드</a></h3>
+          <p class="price">6,500원</p>
+        </div>
+      </li>
+      <li class="card">
+        <img class="thumb" src="images/menu3.jpg" alt="조각으로 자른 치즈 케이크">
+        <div class="body">
+          <h3><a href="menu.html">치즈 케이크</a></h3>
+          <p class="price">6,000원</p>
+        </div>
+      </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>공지</h2>
+      <p class="sub">8월 15일은 정기 휴무입니다. 자세한 내용은 아래에서 확인하세요.</p>
+      <button type="button" class="cta" onclick="document.getElementById('notice').showModal()">공지 열기</button>
+    </section>
+
+    <dialog id="notice" aria-labelledby="notice-title">
+      <h2 id="notice-title">8월 정기 휴무 안내</h2>
+      <p>8월 15일(금)은 쉽니다. 8월 16일부터 평소대로 문을 엽니다.</p>
+      <button type="button" class="cta" onclick="this.closest('dialog').close()">닫기</button>
+    </dialog>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">초록상점 카페 · 서울 어딘가 · 070-0000-0000</div>
+</footer>
+
+</body>
+</html>

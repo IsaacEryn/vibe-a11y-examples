@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>25장 실습 해설 — 심어둔 문제 전체 목록</title>
+<meta name="description" content="25장 Shift Left 실습의 시작 코드에 심어둔 접근성 문제를 원인 단위로 정리했습니다. 다 고친 뒤에 맞춰보세요.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/theme.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header>
+  <p class="topnav"><a href="../">실습 데모 목록</a> · <a href="./">25장 실습</a></p>
+  <h1>25장 해설 — 심어둔 문제 전체 목록</h1>
+  <div class="notice">
+    <p><strong>먼저 직접 찾아보세요.</strong> 이 페이지는 답안지입니다.
+       진단과 수리를 마친 뒤에 열어 맞춰보시길 권합니다.</p>
+  </div>
+</header>
+
+<main id="main">
+
+  <h2>한눈에</h2>
+  <p>시작 코드에는 <strong>원인 12개</strong>가 심어져 있고, 그 원인들이 세 페이지에
+     퍼져 <strong>증상 60건 남짓</strong>으로 나타납니다. 증상의 개수에 놀라지 마세요.
+     카드 컴포넌트 하나를 고치면 세 페이지가 한꺼번에 낫습니다.</p>
+
+  <table>
+    <caption>심어둔 원인과 그 원인이 만드는 증상의 수</caption>
+    <thead>
+      <tr><th scope="col">구분</th><th scope="col">원인</th><th scope="col">증상</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>자동 검사로 잡히는 것</td><td>4개</td><td>47건</td></tr>
+      <tr><td>사람이 찾아야 하는 것</td><td>8개</td><td>15건 안팎</td></tr>
+    </tbody>
+  </table>
+
+  <h2>자동 검사로 잡히는 것</h2>
+  <p>브라우저 확장이나 검사 도구를 한 번 돌리면 나옵니다. 시작 코드의 준수율은
+     <strong>63.6%</strong>, 위반은 <strong>47건</strong>입니다.</p>
+
+  <h3>1. 가짜 버튼 — <code>&lt;div onclick&gt;</code> (16건)</h3>
+  <p>원인은 두 곳입니다. <strong>카드 컴포넌트</strong>(세 페이지에 복제)와
+     <strong>.cta·.go·.notice-close·.mini 스타일</strong>. 카드를
+     <code>&lt;a&gt;</code>로, 나머지를 <code>&lt;button&gt;</code>으로 바꾸면 16건이 한 번에 사라집니다.</p>
+  <p class="where">index.html 카드 3 · 메뉴 카드 5 · 오시는 길 카드 1 ·
+     .cta 2 · .go 1 · .notice-close 1 · .mini 3</p>
+
+  <h3>2. 파일명 대체 텍스트 (10건)</h3>
+  <p><code>alt="menu1.jpg"</code>처럼 파일명이 그대로 들어가 있습니다. 약도
+     (<code>map.png</code>)도 마찬가지입니다. 메뉴 사진은 무엇이 담겼는지,
+     약도는 어떻게 찾아오는지를 글로 적어야 합니다.</p>
+
+  <h3>3. 명도 대비 미달 (18건)</h3>
+  <p>원인은 <strong>색 변수 두 개</strong>입니다. <code>--muted: #9a9a9a</code>는
+     흰 배경에서 2.81:1, <code>--brand: #7cb342</code> 위의 흰 글자는 2.5:1입니다.
+     변수 두 줄을 고치면 18건이 함께 낫습니다.</p>
+
+  <h3>4. 확대 차단 (3건)</h3>
+  <p>세 페이지 모두 <code>maximum-scale=1, user-scalable=no</code>가 붙어 있습니다.</p>
+
+  <h2>사람이 찾아야 하는 것</h2>
+  <p>여기부터가 이 실습의 핵심입니다. 자동 도구는 아래를 한 건도 보고하지 않습니다.
+     17장의 5분 루틴과 키보드로 직접 찾아야 합니다.</p>
+
+  <h3>5. 포커스 표시가 지워졌다</h3>
+  <p><code>*:focus { outline: none; }</code>가 전역에 걸려 있습니다. Tab을 눌러도
+     지금 어디인지 보이지 않습니다. 12장에서 배운 <code>:focus-visible</code>로 되살리세요.</p>
+
+  <h3>6. 메뉴 순서가 화면과 다르다</h3>
+  <p>내비게이션이 화면에는 홈·메뉴·오시는 길 순으로 보이지만, 마크업은
+     오시는 길·메뉴·홈 순입니다. CSS <code>order</code>로 눈속임했습니다.
+     Tab을 누르면 오시는 길부터 갑니다. 마크업 순서 자체를 고쳐야 합니다.</p>
+
+  <h3>7. 모달이 모달이 아니다</h3>
+  <p>홈의 '공지 열기'가 여는 것은 <code>&lt;div&gt;</code> 오버레이입니다.
+     열려도 포커스가 들어가지 않고, ESC로 닫히지 않고, 닫아도 포커스가 돌아오지
+     않고, 뒤 배경이 그대로 Tab에 걸립니다. 14장의 <code>&lt;dialog&gt;</code>로 바꾸세요.</p>
+
+  <h3>8. 검색창에 이름표가 없다</h3>
+  <p>메뉴 페이지의 검색 입력에 <code>&lt;label&gt;</code>이 없습니다.
+     placeholder만 있어 입력을 시작하면 무엇을 넣는 칸인지 사라집니다.
+     검사 도구가 placeholder를 이름으로 인정해 그냥 넘어가는 경우가 많습니다.</p>
+
+  <h3>9. 알레르기 표시가 색뿐이다</h3>
+  <p>메뉴 페이지 맨 아래, 우유는 초록 점 견과류는 주황 점입니다. 색을 구별하기
+     어려우면 어느 메뉴에 무엇이 들었는지 알 수 없습니다. 식품 알레르기 정보라
+     위험하기도 합니다. 글자를 함께 넣으세요.</p>
+
+  <h3>10. 제목이 하나도 없다</h3>
+  <p>세 페이지에 <code>&lt;h1&gt;</code>~<code>&lt;h6&gt;</code>가 한 개도 없습니다.
+     제목처럼 보이는 것은 전부 <code>&lt;div class="title"&gt;</code>입니다.
+     스크린리더 사용자는 페이지의 목차를 받지 못합니다.</p>
+
+  <h3>11. 랜드마크가 없다</h3>
+  <p><code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>,
+     <code>&lt;footer&gt;</code>가 없어 구역 단위로 건너뛸 수 없습니다.
+     영업시간도 <code>&lt;table&gt;</code>이 아니라 div 격자입니다.</p>
+
+  <h3>12. 아이콘 버튼이 작고 이름이 없다</h3>
+  <p>오시는 길 맨 아래의 ☎ ◎ ▶ 세 개가 30×30px입니다. WCAG의 최소선
+     24×24px은 넘지만 권장값 44×44px에는 못 미치고, 기호뿐이라 스크린리더에는
+     "☎"로만 들립니다.</p>
+
+  <h2>다 고쳤다면</h2>
+  <ul>
+    <li>자동 검사 위반 0건</li>
+    <li>키보드만으로 세 페이지를 돌고 공지를 열고 닫기</li>
+    <li>제목 목록으로 페이지 구조가 드러나기</li>
+    <li>그리고 규칙 파일 아래에서 새로 만든 예약 문의 폼이 첫 검사에서 통과</li>
+  </ul>
+  <p>마지막 항목이 이 실습이 남기는 교훈입니다. 고치는 데 든 시간과, 규칙 아래
+     태어난 코드에 든 시간을 비교해 보세요.</p>
+
+  <nav class="pager" aria-label="관련 페이지">
+    <a href="./">25장 실습 안내로</a>
+    <a href="../">실습 데모 목록</a>
+  </nav>
+</main>
+
+<footer>
+  <p>《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
+     <a href="https://github.com/IsaacEryn/vibe-a11y-examples">소스 보기</a></p>
+</footer>
+</body>
+</html>

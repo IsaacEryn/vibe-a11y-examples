@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>26장 실습 — 운영 1년차 사이트 감사하기</title>
+<meta name="description" content="공지와 배너가 쌓이며 문제가 생긴 카페 사이트입니다. 26장 Audit & Improve 실습의 대상입니다.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/theme.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header>
+  <p class="topnav"><a href="../">실습 데모 목록</a></p>
+  <h1>26장 실습 — 운영 1년차 사이트</h1>
+  <p class="lede">25장의 카페 사이트를 1년 굴린 상태입니다. 공지가 다섯 건 쌓였고,
+     배너가 두 장 붙었고, 원데이 클래스 예약이 생겼습니다. 페이지는 열세 장입니다.
+     전수 점검이 슬슬 부담스러워지는 규모, 그것이 이 실습의 출발점입니다.</p>
+</header>
+
+<main id="main">
+
+  <h2>대상 사이트 열기</h2>
+  <nav class="pager" aria-label="대상 사이트">
+    <a href="site/index.html">운영 1년차 사이트 열기</a>
+    <a href="site.zip" download>폴더째 내려받기 (zip)</a>
+  </nav>
+
+  <h2>페이지 구성</h2>
+  <p>표본을 뽑으려면 먼저 템플릿 유형을 나눠야 합니다. 이 사이트는 네 종류입니다.</p>
+  <table>
+    <caption>운영 1년차 사이트의 템플릿과 페이지</caption>
+    <thead>
+      <tr><th scope="col">템플릿</th><th scope="col">페이지</th><th scope="col">특징</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>공통 페이지</td><td>홈, 메뉴, 오시는 길</td><td>모든 방문자가 지나갑니다</td></tr>
+      <tr><td>공지</td><td>목록 1 + 상세 5</td><td>콘텐츠가 계속 쌓입니다</td></tr>
+      <tr><td>핵심 과업</td><td>클래스 소개 → 신청 → 완료</td><td>끊기면 매출이 끊깁니다</td></tr>
+      <tr><td>상태·변형</td><td>검색 결과 없음</td><td>평소에 안 보이는 화면</td></tr>
+    </tbody>
+  </table>
+
+  <div class="notice">
+    <p><strong>의도적으로 문제를 남겨둔 교보재입니다.</strong> 25장 시작 코드의
+       문제가 그대로 남아 있고, 1년치 운영이 새 문제를 더 얹었습니다.
+       이 코드를 그대로 가져다 쓰지 마세요.</p>
+  </div>
+
+  <h2>이 실습에서 눈여겨볼 것</h2>
+  <p>26장이 강조하는 구분이 이 사이트에 실물로 들어 있습니다.
+     <strong>코드를 고쳐야 낫는 문제</strong>와 <strong>프로세스를 고쳐야 낫는
+     문제</strong>입니다.</p>
+  <ul>
+    <li><strong>코드 문제.</strong> 카드 컴포넌트, 색 변수 두 개, 확대 차단,
+      페이지네이션. 한 번 고치면 열세 페이지가 함께 낫습니다.</li>
+    <li><strong>콘텐츠 문제.</strong> 관리자가 공지를 올릴 때마다 붙는 이미지의
+      대체 텍스트입니다. 어떤 공지는 파일명이 그대로 들어갔고, 어떤 공지는
+      정보를 담은 이미지인데 비어 있고, 어떤 공지는 "여름 음료 사진"처럼
+      아무것도 알려주지 않습니다. 코드를 고쳐도 다음 달 공지에서 또 생깁니다.</li>
+  </ul>
+  <p>두 번째 것을 어떻게 멈출지가 이 장의 마지막 질문입니다. 10장의 업로드 화면
+     프롬프트가 힌트입니다.</p>
+
+  <h2>실습 순서</h2>
+  <ol>
+    <li><strong>표본 선정.</strong> 열세 장을 다 검사하지 말고, 20장의 다섯 그룹으로
+      대표를 뽑으세요. 콘텐츠가 자주 바뀌는 페이지는 따로 표시해 둡니다.</li>
+    <li><strong>첫 감사.</strong> 표본에 자동 검사를 돌리고, 핵심 과업(클래스 신청)
+      하나는 5분 루틴과 스크린리더로 직접 완주합니다.</li>
+    <li><strong>개선 스프린트.</strong> 페이지별 결과를 한꺼번에 넘겨 가로지르는
+      원인부터 찾게 하세요.</li>
+    <li><strong>다시 나빠지지 않게.</strong> 정기 검사와 기준선을 세웁니다.</li>
+  </ol>
+
+  <nav class="pager" aria-label="관련 페이지">
+    <a href="../ch25/">25장 실습 — 만들다 만 사이트</a>
+    <a href="../">실습 데모 목록</a>
+  </nav>
+</main>
+
+<footer>
+  <p>《바이브 코딩, 접근성까지 부탁해》 실습 데모 ·
+     <a href="https://github.com/IsaacEryn/vibe-a11y-examples">소스 보기</a></p>
+</footer>
+</body>
+</html>

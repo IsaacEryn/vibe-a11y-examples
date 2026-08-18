@@ -14,7 +14,7 @@
      포커스 표시가 있는 쪽은 focus-on.html입니다. */
   body { font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#fff; color:#111; margin:0; }
   .shot { padding:44px 24px; min-height:430px; box-sizing:border-box; }
-  .col { width:330px; margin:0 auto; }
+  .col { width:100%; max-width:330px; margin:0 auto; }
   .col > h2 { font-size:16px; text-align:center; margin:0 0 18px; }
   .form { border:1px solid #d5d5d5; border-radius:12px; padding:20px 18px 22px; }
   .field { margin:0 0 14px; }
@@ -36,9 +36,16 @@
                    border-radius:10px; padding:14px 18px; margin:0 0 20px; }
   .below p { margin:0 0 14px; }
   .below a { color:#1d4ed8; }
+
+  /* 화면에는 보이지 않지만 스크린리더는 읽는 제목입니다. 지면 캡처 영역을 바꾸지 않으려고
+     시각적으로만 감춥니다(display:none으로 감추면 보조기기에서도 사라집니다). */
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+             overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 </style>
 </head>
 <body>
+<main>
+  <h1 class="sr-only">12장 포커스 표시를 지운 화면 (도판용)</h1>
   <div class="shot">
     <div class="col">
       <h2>포커스 표시를 지운 화면</h2>
@@ -69,5 +76,6 @@
     <p><a href="focus-on.html">포커스가 보이는 화면 보기</a> ·
        <a href="../">실습 데모 목록으로</a></p>
   </div>
+</main>
 </body>
 </html>

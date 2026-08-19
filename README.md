@@ -1,6 +1,6 @@
 # vibe-a11y-examples
 
-《바이브 코딩, 접근성까지 부탁해》(가제) — AI 시대 바이브 코더를 위한 웹 접근성 실전 가이드의
+《바이브 코딩, 사용자가 늘어나는 웹의 비밀》(가제) — AI 시대 바이브 코더를 위한 웹 접근성 실전 가이드의
 **실습 데모 사이트·예제 저장소**입니다.
 
 Companion demos and examples for a Korean book on web accessibility for AI-assisted ("vibe coding") developers.

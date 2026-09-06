@@ -10,8 +10,6 @@ Companion demos and examples for a Korean book on web accessibility for AI-assis
 - **https://demo.codeslog.com/book/vibe-a11y/**
 - 책에서 다루는 접근성 문제를 브라우저에서 직접 겪어볼 수 있습니다 — 마우스를 치우고
   <kbd>Tab</kbd> 키로, 가능하면 스크린리더로도 써보세요.
-- 직접 써 보기 어렵다면 [리허설](https://rehearsal.codeslog.com/)에 주소를 넣어 보세요.
-  스크린리더·키보드 사용자의 제약으로 화면을 써 보고 어디서 막히는지 단계별로 보여주는 책의 실습 도구입니다.
 
 ## ⚠️ 일러두기 — 의도된 나쁜 예
 
